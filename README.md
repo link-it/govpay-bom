@@ -1,3 +1,7 @@
+<p align="center">
+<img src="https://www.link.it/wp-content/uploads/2025/01/logo-govpay.svg" alt="GovPay Logo" width="200"/>
+</p>
+
 # GovPay BOM - Bill of Materials
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://raw.githubusercontent.com/link-it/govpay-bom/master/LICENSE)
