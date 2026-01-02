@@ -1,0 +1,112 @@
+2025-12-29  GovPay Team <govpay@link.it>
+
+	* [BOM]
+	Aggiunta funzionalità
+	Aggiunte dipendenze per database MySQL, Oracle e SQL Server:
+	- MySQL Connector/J 9.5.0
+	- Oracle JDBC (ojdbc11) 23.7.0.25.01
+	- Microsoft SQL Server JDBC 12.8.1.jre11
+
+2025-12-29  GovPay Team <govpay@link.it>
+
+	* [BOM]
+	Aggiornamento dipendenze
+	Aggiornate tutte le dipendenze per allineamento a Spring Boot 3.5.9:
+	- Spring Boot: 3.4.1 -> 3.5.9
+	- Spring Framework: 6.2.1 -> 6.2.15
+	- Spring Security: 6.4.2 -> 6.5.7
+	- Spring Data: 2024.1.1 -> 2025.0.7
+	- Spring Batch: 5.2.1 -> 5.2.4
+	- Hibernate: 6.6.4.Final -> 6.6.39.Final
+	- HikariCP: 6.2.1 -> 6.3.3
+	- PostgreSQL Driver: 42.7.4 -> 42.7.8
+	- SLF4J: 2.0.16 -> 2.0.17
+	- Logback: 1.5.15 -> 1.5.22
+	- Jackson: 2.18.2 -> 2.19.4
+	- Commons IO: 2.18.0 -> 2.21.0
+	- Commons Codec: 1.17.1 -> 1.18.0
+	- Guava: 33.4.0-jre -> 33.5.0-jre
+	- Lombok: 1.18.36 -> 1.18.42
+	- JUnit Jupiter: 5.11.4 -> 5.12.2
+	- Mockito: 5.14.2 -> 5.17.0
+	- AssertJ: 3.27.0 -> 3.27.6
+	- Testcontainers: 1.20.4 -> 1.21.4
+	- SpringDoc OpenAPI: 2.7.0 -> 3.0.0
+
+2025-12-29  GovPay Team <govpay@link.it>
+
+	* Rilasciata versione 1.0.0-SNAPSHOT
+
+	* [BOM]
+	Aggiunta funzionalità
+	Creazione del progetto govpay-bom per la gestione centralizzata delle versioni delle dipendenze.
+
+	* [BOM]
+	Aggiunta funzionalità
+	Configurazione dipendenze Spring:
+	- Spring Boot 3.4.1
+	- Spring Framework 6.2.1
+	- Spring Security 6.4.2
+	- Spring Data 2024.1.1
+	- Spring Batch 5.2.1
+
+	* [BOM]
+	Aggiunta funzionalità
+	Configurazione dipendenze Database:
+	- Hibernate 6.6.4.Final
+	- HikariCP 6.2.1
+	- PostgreSQL Driver 42.7.4
+	- H2 Database 2.3.232
+
+	* [BOM]
+	Aggiunta funzionalità
+	Configurazione dipendenze Logging:
+	- SLF4J 2.0.16
+	- Logback 1.5.15
+
+	* [BOM]
+	Aggiunta funzionalità
+	Configurazione dipendenze JSON/XML:
+	- Jackson 2.18.2
+	- Jakarta XML Bind API 4.0.2
+	- JAXB Runtime 4.0.5
+
+	* [BOM]
+	Aggiunta funzionalità
+	Configurazione dipendenze Jakarta EE:
+	- Jakarta Servlet API 6.1.0
+	- Jakarta Validation API 3.1.0
+	- Jakarta Persistence API 3.2.0
+	- Jakarta Annotation API 3.0.0
+
+	* [BOM]
+	Aggiunta funzionalità
+	Configurazione dipendenze Utilities:
+	- Apache Commons Lang3 3.17.0
+	- Apache Commons IO 2.18.0
+	- Apache Commons Codec 1.17.1
+	- Google Guava 33.4.0-jre
+	- Lombok 1.18.36
+	- MapStruct 1.6.3
+
+	* [BOM]
+	Aggiunta funzionalità
+	Configurazione dipendenze Testing:
+	- JUnit Jupiter 5.11.4
+	- Mockito 5.14.2
+	- AssertJ 3.27.0
+	- Testcontainers 1.20.4
+
+	* [BOM]
+	Aggiunta funzionalità
+	Configurazione dipendenze API Documentation:
+	- SpringDoc OpenAPI 2.7.0
+
+	* [BOM]
+	Aggiunta funzionalità
+	Configurazione plugin Maven con versioni centralizzate.
+	Configurato annotation processor per Lombok e MapStruct.
+
+	* [Build]
+	Aggiunta funzionalità
+	Configurazione Java 21 e encoding UTF-8.
