@@ -4,42 +4,37 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.gov4j.govpay</groupId>
-    <artifactId>govpay-bom</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+	<groupId>org.gov4j.govpay</groupId>
+	<artifactId>govpay-bom</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-    <name>GovPay BOM</name>
-    <description>Parent POM for dependency version management across GovPay projects</description>
-    <url>https://github.com/link-it/govpay-bom</url>
+	<name>GovPay BOM</name>
+	<description>Parent POM for dependency version management across GovPay projects</description>
+	<url>https://gov4j.org/maven/govpay/govpay-bom/1.0.0-SNAPSHOT</url>
 
-    <licenses>
-        <license>
-            <name>GNU General Public License v3.0</name>
-            <url>https://www.gnu.org/licenses/gpl-3.0.html</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+	<licenses>
+		<license>
+			<name>GNU GENERAL PUBLIC LICENSE, Version 3</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
-    <organization>
-        <name>Link.it</name>
-        <url>https://www.link.it</url>
-    </organization>
+	<developers>
+		<developer>
+			<name>Giuliano Pintori</name>
+			<email>giuliano.pintori@link.it</email>
+			<organization>Link.it s.r.l.</organization>
+			<organizationUrl>https://www.link.it</organizationUrl>
+		</developer>
+	</developers>
 
-    <scm>
-        <connection>scm:git:git://github.com/link-it/govpay-bom.git</connection>
-        <developerConnection>scm:git:ssh://github.com:link-it/govpay-bom.git</developerConnection>
-        <url>https://github.com/link-it/govpay-bom</url>
-    </scm>
-
-    <developers>
-        <developer>
-            <id>link-it</id>
-            <name>Link.it</name>
-            <organization>Link.it</organization>
-            <organizationUrl>https://www.link.it</organizationUrl>
-        </developer>
-    </developers>
+	<scm>
+		<connection>scm:git:https://github.com/link-it/govpay-bom.git</connection>
+		<developerConnection>scm:git:git@github.com:link-it/govpay-bom.git</developerConnection>
+		<url>https://github.com/link-it/govpay-bom</url>
+	</scm>
 
     <distributionManagement>
         <snapshotRepository>
