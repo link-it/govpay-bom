@@ -22,7 +22,7 @@ Per utilizzare questo BOM come parent nei progetti GovPay:
 
 ```xml
 <parent>
-    <groupId>it.govpay</groupId>
+    <groupId>org.gov4j.govpay</groupId>
     <artifactId>govpay-bom</artifactId>
     <version>1.0.0</version>
 </parent>

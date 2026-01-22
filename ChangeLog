@@ -1,5 +1,25 @@
 2025-12-29  GovPay Team <govpay@link.it>
 
+	* [Build]
+	Aggiunta funzionalità
+	Aggiunta pipeline GitHub Actions per pubblicazione su Maven Central.
+	- Job dependency-check con OWASP Dependency Check (failBuildOnCVSS=7)
+	- Snapshot automatici su push in main/master
+	- Release su tag X.Y.Z
+	- Upload report OWASP come artifact
+	- Configurato distributionManagement per Sonatype Central Portal
+	- Aggiunti plugin maven-gpg-plugin e central-publishing-maven-plugin
+	- Aggiunto profile 'release' per la pubblicazione
+
+2025-12-29  GovPay Team <govpay@link.it>
+
+	* [BOM]
+	Aggiunta funzionalità
+	Aggiunto plugin OWASP Dependency Check 12.2.0 per la validazione delle vulnerabilità nelle dipendenze.
+	Configurazione: fase verify, failBuildOnCVSS=11, autoUpdate=true.
+
+2025-12-29  GovPay Team <govpay@link.it>
+
 	* [BOM]
 	Aggiunta funzionalità
 	Aggiunte dipendenze per database MySQL, Oracle e SQL Server:
