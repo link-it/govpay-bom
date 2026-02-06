@@ -22,17 +22,21 @@ jobs:
           java-version: "21"
           cache: maven
 
+      - name: Cache OWASP Dependency-Check DB
+        uses: actions/cache@v4
+        with:
+          path: .dependency-check/data
+          key: ${{ runner.os }}-owasp-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-owasp-
+
       - name: OWASP Dependency Check
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
           OSS_INDEX_USER: ${{ vars.OSS_INDEX_USER }}
           OSS_INDEX_PASSWORD: ${{ secrets.OSS_INDEX_PASSWORD }}
         run: |
-          mvn -B dependency-check:check \
-            -Dowasp.failBuildOnCVSS=7 \
-            -DnvdApiKey=$NVD_API_KEY \
-            -DossindexAnalyzerUsername=$OSS_INDEX_USER \
-            -DossindexAnalyzerPassword=$OSS_INDEX_PASSWORD
+          mvn -B dependency-check:check -Dowasp.failBuildOnCVSS=7 -DdataDirectory=.dependency-check/data -DnvdApiKey=$NVD_API_KEY -DossindexAnalyzerUsername=$OSS_INDEX_USER -DossindexAnalyzerPassword=$OSS_INDEX_PASSWORD
 
       - name: Upload Dependency Check Report
         if: always()
