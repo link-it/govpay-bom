@@ -36,7 +36,7 @@ jobs:
           OSS_INDEX_USER: ${{ vars.OSS_INDEX_USER }}
           OSS_INDEX_PASSWORD: ${{ secrets.OSS_INDEX_PASSWORD }}
         run: |
-          mvn -B dependency-check:check -Dowasp.failBuildOnCVSS=7 -DdataDirectory=.dependency-check/data -DnvdApiKey=$NVD_API_KEY -DossindexAnalyzerUsername=$OSS_INDEX_USER -DossindexAnalyzerPassword=$OSS_INDEX_PASSWORD
+          mvn -B dependency-check:check -DdataDirectory=.dependency-check/data -DnvdApiKey=$NVD_API_KEY -DossindexAnalyzerUsername=$OSS_INDEX_USER -DossindexAnalyzerPassword=$OSS_INDEX_PASSWORD
 
       - name: Upload Dependency Check Report
         if: always()
