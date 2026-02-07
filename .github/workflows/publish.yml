@@ -69,6 +69,20 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
+      - name: Verify required secrets
+        env:
+          CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+          CENTRAL_TOKEN: ${{ secrets.CENTRAL_TOKEN }}
+        run: |
+          MISSING=()
+          [ -z "$CENTRAL_USERNAME" ] && MISSING+=("CENTRAL_USERNAME")
+          [ -z "$CENTRAL_TOKEN" ] && MISSING+=("CENTRAL_TOKEN")
+          if [ ${#MISSING[@]} -gt 0 ]; then
+            echo "::error::Missing secrets: ${MISSING[*]}"
+            exit 1
+          fi
+          echo "All required secrets are set."
+
       - name: Read project version
         id: version
         run: |
@@ -118,6 +132,24 @@ jobs:
           server-password: CENTRAL_TOKEN
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
+
+      - name: Verify required secrets
+        env:
+          CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+          CENTRAL_TOKEN: ${{ secrets.CENTRAL_TOKEN }}
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          MISSING=()
+          [ -z "$CENTRAL_USERNAME" ] && MISSING+=("CENTRAL_USERNAME")
+          [ -z "$CENTRAL_TOKEN" ] && MISSING+=("CENTRAL_TOKEN")
+          [ -z "$GPG_PRIVATE_KEY" ] && MISSING+=("GPG_PRIVATE_KEY")
+          [ -z "$GPG_PASSPHRASE" ] && MISSING+=("GPG_PASSPHRASE")
+          if [ ${#MISSING[@]} -gt 0 ]; then
+            echo "::error::Missing secrets: ${MISSING[*]}"
+            exit 1
+          fi
+          echo "All required secrets are set."
 
       - name: Read project version
         id: version
