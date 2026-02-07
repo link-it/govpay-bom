@@ -64,14 +64,14 @@ jobs:
           cache: maven
           # Deve combaciare con <id> del distributionManagement snapshotRepository (es. central-snapshots)
           server-id: central-snapshots
-          server-username: CENTRAL_USERNAME
-          server-password: CENTRAL_TOKEN
+          server-username: ${{ vars.CENTRAL_USERNAME }}
+          server-password: ${{ secrets.CENTRAL_TOKEN }}
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Verify required secrets
         env:
-          CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+          CENTRAL_USERNAME: ${{ vars.CENTRAL_USERNAME }}
           CENTRAL_TOKEN: ${{ secrets.CENTRAL_TOKEN }}
         run: |
           MISSING=()
@@ -128,14 +128,14 @@ jobs:
           cache: maven
           # Deve combaciare con publishingServerId del central-publishing-maven-plugin (es. central)
           server-id: central
-          server-username: CENTRAL_USERNAME
-          server-password: CENTRAL_TOKEN
+          server-username: ${{ vars.CENTRAL_USERNAME }}
+          server-password: ${{ secrets.CENTRAL_TOKEN }}
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Verify required secrets
         env:
-          CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+          CENTRAL_USERNAME: ${{ vars.CENTRAL_USERNAME }}
           CENTRAL_TOKEN: ${{ secrets.CENTRAL_TOKEN }}
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
@@ -176,7 +176,7 @@ jobs:
 
       - name: Deploy RELEASE to Maven Central (Central Portal)
         env:
-          CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+          CENTRAL_USERNAME: ${{ vars.CENTRAL_USERNAME }}
           CENTRAL_TOKEN: ${{ secrets.CENTRAL_TOKEN }}
           MAVEN_GPG_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
