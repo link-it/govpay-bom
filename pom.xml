@@ -524,16 +524,13 @@
                     </executions>
                 </plugin>
 
-                <!-- GPG Signing -->
+                <!-- GPG Signing (Bouncy Castle signer – no gpg-agent/pinentry needed) -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
                     <version>${maven-gpg-plugin.version}</version>
                     <configuration>
-                        <gpgArguments>
-                            <arg>--pinentry-mode</arg>
-                            <arg>loopback</arg>
-                        </gpgArguments>
+                        <signer>bc</signer>
                     </configuration>
                     <executions>
                         <execution>
