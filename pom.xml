@@ -103,6 +103,12 @@
         <!-- API Documentation -->
         <springdoc-openapi.version>3.0.1</springdoc-openapi.version>
 
+        <!-- OpenAPI Generator -->
+        <openapi.tool.codegen.version>7.8.0</openapi.tool.codegen.version>
+
+        <!-- JaCoCo -->
+        <jacoco.version>0.8.13</jacoco.version>
+
         <!-- Publishing -->
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
         <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
@@ -405,6 +411,18 @@
                 <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
                 <version>${springdoc-openapi.version}</version>
             </dependency>
+
+            <!-- OpenAPI Generator -->
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator</artifactId>
+                <version>${openapi.tool.codegen.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>${openapi.tool.codegen.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -522,6 +540,13 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+
+                <!-- JaCoCo Code Coverage -->
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco.version}</version>
                 </plugin>
 
                 <!-- GPG Signing (Bouncy Castle signer – no gpg-agent/pinentry needed) -->
