@@ -1,5 +1,32 @@
 2026-02-08  GovPay Team <govpay@link.it>
 
+	* [BOM]
+	Aggiornamento dipendenze
+	- Spring Data: 2025.0.7 -> 2025.1.2
+	- Jackson: 2.19.4 -> 2.21.0
+	- Logback: 1.5.22 -> 1.5.28
+	- Jakarta XML Bind API: 4.0.2 -> 4.0.5
+	- JAXB Runtime: 4.0.5 -> 4.0.6
+	- PostgreSQL Driver: 42.7.8 -> 42.7.9
+	- MySQL Connector/J: 9.5.0 -> 9.6.0
+	- Oracle JDBC: 23.7.0.25.01 -> 23.26.1.0.0
+	- H2 Database: 2.3.232 -> 2.4.240
+	- Commons Lang3: 3.17.0 -> 3.20.0
+	- Commons Codec: 1.18.0 -> 1.21.0
+	- Mockito: 5.17.0 -> 5.21.0
+	- SpringDoc OpenAPI: 3.0.0 -> 3.0.1
+
+	* [Build]
+	Aggiornamento plugin
+	- maven-gpg-plugin: 3.2.7 -> 3.2.8
+	- central-publishing-maven-plugin: 0.7.0 -> 0.10.0
+	- maven-surefire-plugin: 3.5.2 -> 3.5.4
+	- maven-failsafe-plugin: 3.5.2 -> 3.5.4
+	- maven-war-plugin: 3.4.0 -> 3.5.1
+	- maven-javadoc-plugin: 3.11.2 -> 3.12.0
+
+2026-02-08  GovPay Team <govpay@link.it>
+
 	* Rilasciata versione 1.0.0
 
 	* [Build]
