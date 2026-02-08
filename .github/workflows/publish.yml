@@ -56,7 +56,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Java + Maven settings + GPG
+      - name: Set up Java + Maven settings
         uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -64,10 +64,8 @@ jobs:
           cache: maven
           # Deve combaciare con <id> del distributionManagement snapshotRepository (es. central-snapshots)
           server-id: central-snapshots
-          server-username: ${{ vars.CENTRAL_USERNAME }}
-          server-password: ${{ secrets.CENTRAL_TOKEN }}
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+          server-username: CENTRAL_USERNAME
+          server-password: CENTRAL_TOKEN
 
       - name: Verify required secrets
         env:
@@ -93,7 +91,7 @@ jobs:
       - name: Deploy SNAPSHOT to Sonatype snapshots
         if: endsWith(steps.version.outputs.version, '-SNAPSHOT')
         env:
-          CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+          CENTRAL_USERNAME: ${{ vars.CENTRAL_USERNAME }}
           CENTRAL_TOKEN: ${{ secrets.CENTRAL_TOKEN }}
         run: mvn -B -DskipTests deploy
 
@@ -128,8 +126,8 @@ jobs:
           cache: maven
           # Deve combaciare con publishingServerId del central-publishing-maven-plugin (es. central)
           server-id: central
-          server-username: ${{ vars.CENTRAL_USERNAME }}
-          server-password: ${{ secrets.CENTRAL_TOKEN }}
+          server-username: CENTRAL_USERNAME
+          server-password: CENTRAL_TOKEN
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
