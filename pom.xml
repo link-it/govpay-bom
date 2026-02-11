@@ -6,12 +6,12 @@
 
 	<groupId>org.gov4j.govpay</groupId>
 	<artifactId>govpay-bom</artifactId>
-	<version>1.1.0</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>GovPay BOM</name>
 	<description>Parent POM for dependency version management across GovPay projects</description>
-	<url>https://gov4j.org/maven/govpay/govpay-bom/1.1.0</url>
+	<url>https://gov4j.org/maven/govpay/govpay-bom/1.1.1-SNAPSHOT</url>
 
 	<licenses>
 		<license>
@@ -106,6 +106,8 @@
 
         <!-- OpenAPI Generator -->
         <openapi.tool.codegen.version>7.8.0</openapi.tool.codegen.version>
+        <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
+        <swagger-annotations.version>2.2.20</swagger-annotations.version>
 
         <!-- JaCoCo -->
         <jacoco.version>0.8.13</jacoco.version>
@@ -253,6 +255,11 @@
             <dependency>
                 <groupId>org.hibernate.orm</groupId>
                 <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.orm</groupId>
+                <artifactId>hibernate-jpamodelgen</artifactId>
                 <version>${hibernate.version}</version>
             </dependency>
 
@@ -433,6 +440,16 @@
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>${openapi.tool.codegen.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>jackson-databind-nullable</artifactId>
+                <version>${jackson-databind-nullable.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
