@@ -108,7 +108,8 @@
         <!-- OpenAPI Generator -->
         <openapi.tool.codegen.version>7.8.0</openapi.tool.codegen.version>
         <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
-        <swagger-annotations.version>2.2.20</swagger-annotations.version>
+        <swagger-v1.version>1.6.2</swagger-v1.version>
+        <swagger-v3.version>2.2.20</swagger-v3.version>
 
         <!-- JaCoCo -->
         <jacoco.version>0.8.13</jacoco.version>
@@ -448,9 +449,14 @@
                 <version>${jackson-databind-nullable.version}</version>
             </dependency>
             <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-v1.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-annotations</artifactId>
-                <version>${swagger-annotations.version}</version>
+                <version>${swagger-v3.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
