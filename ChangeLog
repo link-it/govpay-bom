@@ -8,6 +8,7 @@
 	- hibernate-jpamodelgen (versione allineata a hibernate.version)
 	- jackson-databind-nullable 0.2.6
 	- swagger-annotations 2.2.20
+	- jaxb2-maven-plugin 4.1.0
 
 2026-02-10  GovPay Team <govpay@link.it>
 
