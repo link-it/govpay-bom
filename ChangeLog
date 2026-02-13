@@ -3,6 +3,11 @@
 	* Avanzamento versione 1.1.1-SNAPSHOT
 
 	* [BOM]
+	Correzione
+	SpringDoc OpenAPI: 3.0.1 -> 2.8.6 (la serie 3.x richiede Spring Boot 4,
+	ripristinata la serie 2.x compatibile con Spring Boot 3).
+
+	* [BOM]
 	Aggiunta funzionalità
 	Aggiunte nuove dipendenze:
 	- hibernate-jpamodelgen (versione allineata a hibernate.version)

@@ -103,7 +103,7 @@
         <testcontainers.version>1.21.4</testcontainers.version>
 
         <!-- API Documentation -->
-        <springdoc-openapi.version>3.0.1</springdoc-openapi.version>
+        <springdoc-openapi.version>2.8.6</springdoc-openapi.version>
 
         <!-- OpenAPI Generator -->
         <openapi.tool.codegen.version>7.8.0</openapi.tool.codegen.version>
