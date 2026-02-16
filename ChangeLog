@@ -15,6 +15,7 @@
 	- swagger-annotations v1 (io.swagger) 1.6.2
 	- swagger-annotations v3 (io.swagger.core.v3) 2.2.20
 	- jaxb2-maven-plugin 4.1.0
+	- commons-csv 1.14.1
 
 	* [BOM]
 	Correzione

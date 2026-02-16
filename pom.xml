@@ -92,6 +92,7 @@
         <commons-lang3.version>3.20.0</commons-lang3.version>
         <commons-io.version>2.21.0</commons-io.version>
         <commons-codec.version>1.21.0</commons-codec.version>
+        <commons-csv.version>1.14.1</commons-csv.version>
         <guava.version>33.5.0-jre</guava.version>
         <lombok.version>1.18.42</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
@@ -381,6 +382,11 @@
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-csv</artifactId>
+                <version>${commons-csv.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
