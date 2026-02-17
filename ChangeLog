@@ -1,6 +1,6 @@
-2026-02-11  GovPay Team <govpay@link.it>
+2026-02-17  GovPay Team <govpay@link.it>
 
-	* Avanzamento versione 1.1.1-SNAPSHOT
+	* Rilasciata versione 1.1.1
 
 	* [BOM]
 	Correzione
@@ -10,17 +10,23 @@
 	* [BOM]
 	Aggiunta funzionalità
 	Aggiunte nuove dipendenze:
-	- hibernate-jpamodelgen (versione allineata a hibernate.version)
-	- jackson-databind-nullable 0.2.6
-	- swagger-annotations v1 (io.swagger) 1.6.2
-	- swagger-annotations v3 (io.swagger.core.v3) 2.2.20
-	- jaxb2-maven-plugin 4.1.0
 	- commons-csv 1.14.1
 
 	* [BOM]
 	Correzione
 	Rinominata property swagger-annotations.version in swagger-v1.version e swagger-v3.version
 	per evitare collisione tra io.swagger (v1) e io.swagger.core.v3 (v3).
+
+2026-02-11  GovPay Team <govpay@link.it>
+
+	* [BOM]
+	Aggiunta funzionalità
+	Aggiunte nuove dipendenze:
+	- hibernate-jpamodelgen (versione allineata a hibernate.version)
+	- jackson-databind-nullable 0.2.6
+	- swagger-annotations v1 (io.swagger) 1.6.2
+	- swagger-annotations v3 (io.swagger.core.v3) 2.2.20
+	- jaxb2-maven-plugin 4.1.0
 
 2026-02-10  GovPay Team <govpay@link.it>
 
