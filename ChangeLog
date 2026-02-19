@@ -1,3 +1,14 @@
+2026-02-19  GovPay Team <govpay@link.it>
+
+	* Avanzamento versione 1.1.2-SNAPSHOT
+
+	* [BOM]
+	Aggiunta funzionalità
+	Aggiunte dipendenze Tomcat Embed (override CVE-2026-24734):
+	- tomcat-embed-core 10.1.52
+	- tomcat-embed-el 10.1.52
+	- tomcat-embed-websocket 10.1.52
+
 2026-02-17  GovPay Team <govpay@link.it>
 
 	* Rilasciata versione 1.1.1
