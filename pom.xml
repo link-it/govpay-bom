@@ -125,6 +125,7 @@
         <owasp.phase>verify</owasp.phase>
         <owasp.autoUpdate>true</owasp.autoUpdate>
         <owasp.failBuildOnCVSS>11</owasp.failBuildOnCVSS>
+        <owasp.ossindex.analyzer.enabled>false</owasp.ossindex.analyzer.enabled> <!-- Abilita/disabilita l'analisi delle vulnerabilità tramite OSS Index, se disabilitata viene usato il database CVE di NIST -->
 
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
@@ -593,6 +594,7 @@
                     <configuration>
                         <autoUpdate>${owasp.autoUpdate}</autoUpdate>
                         <failBuildOnCVSS>${owasp.failBuildOnCVSS}</failBuildOnCVSS>
+                        <ossindexAnalyzerEnabled>${owasp.ossindex.analyzer.enabled}</ossindexAnalyzerEnabled>
                         <format>ALL</format>
                         <nvdApiDelay>120000</nvdApiDelay>
                         <nvdMaxRetryCount>3</nvdMaxRetryCount>
