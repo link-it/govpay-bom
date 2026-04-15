@@ -121,7 +121,7 @@
         <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
 
         <!-- OWASP Dependency Check -->
-        <owasp.plugin.version>12.2.1</owasp.plugin.version>
+        <owasp.plugin.version>12.2.0</owasp.plugin.version>
         <owasp.phase>verify</owasp.phase>
         <owasp.autoUpdate>true</owasp.autoUpdate>
         <owasp.failBuildOnCVSS>11</owasp.failBuildOnCVSS>
