@@ -1,3 +1,16 @@
+2026-04-15  GovPay Team <govpay@link.it>
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Jackson: 2.21.0 -> 2.21.1 (fix GHSA-72hv-8253-57qq)
+	- Tomcat Embed: 10.1.52 -> 10.1.54 (fix GHSA-95jq-rwvf-vjx4)
+	- AssertJ: 3.27.6 -> 3.27.7 (fix GHSA-rqfh-9r24-8c9r)
+
+	* [Build]
+	Aggiunta funzionalità
+	- Aggiunto job OSV Scan nella pipeline GitHub Actions
+	- Aggiunta property owasp.ossindex.analyzer.enabled per configurazione OSS Index
+
 2026-03-24  GovPay Team <govpay@link.it>
 
 	* Avanzamento versione 1.1.3-SNAPSHOT
