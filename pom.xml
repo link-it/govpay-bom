@@ -123,7 +123,7 @@
         <!-- OWASP Dependency Check -->
         <owasp.plugin.version>12.2.0</owasp.plugin.version>
         <owasp.phase>verify</owasp.phase>
-        <owasp.autoUpdate>true</owasp.autoUpdate>
+        <owasp.autoUpdate>false</owasp.autoUpdate> <!-- WORKAROUND: disabilitato per bug NVD timestamp parsing (DependencyCheck #8424) -->
         <owasp.failBuildOnCVSS>11</owasp.failBuildOnCVSS>
         <owasp.ossindex.analyzer.enabled>false</owasp.ossindex.analyzer.enabled> <!-- Abilita/disabilita l'analisi delle vulnerabilità tramite OSS Index, se disabilitata viene usato il database CVE di NIST -->
 
