@@ -161,6 +161,15 @@
                 <version>${tomcat.version}</version>
             </dependency>
 
+            <!-- Jackson BOM (prima di Spring Boot per override versione jackson-core, fix GHSA-72hv-8253-57qq) -->
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- Spring Boot BOM -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -244,15 +253,6 @@
                 <groupId>org.springframework.batch</groupId>
                 <artifactId>spring-batch-test</artifactId>
                 <version>${spring-batch.version}</version>
-            </dependency>
-
-            <!-- Jackson BOM -->
-            <dependency>
-                <groupId>com.fasterxml.jackson</groupId>
-                <artifactId>jackson-bom</artifactId>
-                <version>${jackson.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
 
             <!-- JUnit BOM -->
