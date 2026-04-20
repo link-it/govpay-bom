@@ -125,7 +125,7 @@
         <owasp.phase>verify</owasp.phase>
         <owasp.autoUpdate>false</owasp.autoUpdate> <!-- WORKAROUND: disabilitato per bug NVD timestamp parsing (DependencyCheck #8424) -->
         <owasp.failBuildOnCVSS>11</owasp.failBuildOnCVSS>
-        <owasp.ossindex.analyzer.enabled>false</owasp.ossindex.analyzer.enabled> <!-- Abilita/disabilita l'analisi delle vulnerabilità tramite OSS Index, se disabilitata viene usato il database CVE di NIST -->
+        <owasp.ossindex.analyzer.enabled>true</owasp.ossindex.analyzer.enabled> <!-- Abilita/disabilita l'analisi delle vulnerabilità tramite OSS Index, se disabilitata viene usato il database CVE di NIST -->
 
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
