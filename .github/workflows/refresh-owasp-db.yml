@@ -30,7 +30,6 @@ jobs:
           key: ${{ runner.os }}-owasp-${{ steps.date.outputs.date }}
           restore-keys: |
             ${{ runner.os }}-owasp-
-          save-always: true
 
       - name: Set up Java
         uses: actions/setup-java@v5
