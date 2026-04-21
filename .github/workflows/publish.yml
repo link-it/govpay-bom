@@ -33,12 +33,13 @@ jobs:
           cache: maven
 
       - name: Cache OWASP Dependency-Check DB
-        uses: actions/cache@v4
+        uses: actions/cache@v5.0.5
         with:
           path: .dependency-check/data
           key: ${{ runner.os }}-owasp-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-owasp-
+          save-always: true
 
       - name: OWASP Dependency Check
         env:
