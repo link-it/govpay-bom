@@ -1,3 +1,10 @@
+2026-04-21  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [Build]
+        Aggiunta funzionalità
+        - Aggiunto workflow che si occupa di aggiornare la cache NVD ogni giorno
+	- Allineato script pipeline per utilizzare la cache aggiornata.
+
 2026-04-15  GovPay Team <govpay@link.it>
 
 	* [BOM]
