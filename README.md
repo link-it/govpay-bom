@@ -51,7 +51,7 @@ Le dipendenze possono essere dichiarate senza specificare la versione:
 |------------|----------|
 | Spring Boot | 3.5.14 |
 | Spring Framework | 6.2.18 |
-| Spring Security | 6.5.9 |
+| Spring Security | 6.5.10 |
 | Spring Data | 2025.1.4 |
 | Spring Batch | 5.2.5 |
 | Tomcat Embed | 10.1.54 |
