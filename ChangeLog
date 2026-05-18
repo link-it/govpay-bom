@@ -30,6 +30,13 @@
 	Aggiornamento plugin
 	- OWASP Dependency Check: 12.2.0 -> 12.2.2
 
+	* [Build]
+	Aggiunta funzionalità
+	Aggiunto workflow refresh-owasp-db (cron giornaliero) per mantenere calda
+	la cache del DB NVD. La CLI Dependency-Check legge la versione dal pom
+	(owasp.plugin.version) e la include nella chiave di cache per evitare
+	mismatch di schema al bump del plugin.
+
 2026-03-21  GovPay Team <govpay@link.it>
 
 	* Avanzamento versione 2.0.0-SNAPSHOT
