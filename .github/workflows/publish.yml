@@ -5,6 +5,16 @@ on:
     branches: ["master", "main"]
     tags:
       - "[0-9]*" # parte su tag che iniziano con un numero (poi validiamo X.Y.Z nel job)
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: write
+  id-token: write
+  actions: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   dependency-check:
@@ -13,20 +23,25 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set up Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "21"
           cache: maven
 
+      - name: Get date for cache key
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
       - name: Cache OWASP Dependency-Check DB
-        uses: actions/cache@v4
+        id: owasp-cache
+        uses: actions/cache@v5
         with:
           path: .dependency-check/data
-          key: ${{ runner.os }}-owasp-${{ github.sha }}
+          key: ${{ runner.os }}-owasp-${{ steps.date.outputs.date }}
           restore-keys: |
             ${{ runner.os }}-owasp-
 
@@ -35,34 +50,59 @@ jobs:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
           OSS_INDEX_USER: ${{ vars.OSS_INDEX_USER }}
           OSS_INDEX_PASSWORD: ${{ secrets.OSS_INDEX_PASSWORD }}
+          # Se la cache è esatta (stessa giornata) skippa l'update NVD
+          NOUPDATE_FLAG: ${{ steps.owasp-cache.outputs.cache-hit == 'true' && '-DautoUpdate=false' || '' }}
         run: |
-          mvn -B dependency-check:check -DdataDirectory=.dependency-check/data -DnvdApiKey=$NVD_API_KEY -DossindexAnalyzerUsername=$OSS_INDEX_USER -DossindexAnalyzerPassword=$OSS_INDEX_PASSWORD
+          mvn -B dependency-check:check \
+            -DdataDirectory=.dependency-check/data \
+            -DnvdApiKey=$NVD_API_KEY \
+            -DossindexAnalyzerUsername=$OSS_INDEX_USER \
+            -DossindexAnalyzerPassword=$OSS_INDEX_PASSWORD \
+            $NOUPDATE_FLAG
 
       - name: Upload Dependency Check Report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dependency-check-report
           path: target/dependency-check-report.*
           retention-days: 30
 
+  # ── OSV Scan (reusable workflow) ──────────────────────────────────────
+  osv-scan:
+    if: ${{ github.event_name == 'push' && (github.ref_name == 'main' || github.ref_type == 'tag' || vars.FORCE_OSV_JOB == 'true') }}
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    uses: "google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v2.3.5"
+    with:
+      matrix-property: 'be-'
+      fail-on-vuln: ${{ github.ref_name == 'main' || github.ref_type == 'tag' }}
+      scan-args: |-
+        -r
+        .
+        --lockfile
+        ./pom.xml
+        --allow-no-lockfiles
+
+  # ── Deploy SNAPSHOT su Maven Central (solo push su main) ─────────────
   snapshot-on-main:
-    needs: dependency-check
+    needs: [ dependency-check, osv-scan ]
     if: startsWith(github.ref, 'refs/heads/')
     runs-on: ubuntu-latest
     permissions:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set up Java + Maven settings
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "21"
           cache: maven
-          # Deve combaciare con <id> del distributionManagement snapshotRepository (es. central-snapshots)
           server-id: central-snapshots
           server-username: CENTRAL_USERNAME
           server-password: CENTRAL_TOKEN
@@ -100,14 +140,14 @@ jobs:
         run: echo "Version is stable -> no publish on main."
 
   release-on-tag:
-    needs: dependency-check
+    needs: [ dependency-check, osv-scan ]
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     permissions:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Validate tag format (must be X.Y.Z)
         run: |
@@ -119,12 +159,11 @@ jobs:
           fi
 
       - name: Set up Java + Maven settings + GPG
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "21"
           cache: maven
-          # Deve combaciare con publishingServerId del central-publishing-maven-plugin (es. central)
           server-id: central
           server-username: CENTRAL_USERNAME
           server-password: CENTRAL_TOKEN

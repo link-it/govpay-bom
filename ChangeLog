@@ -30,7 +30,7 @@
 	Aggiornamento plugin
 	- OWASP Dependency Check: 12.2.0 -> 12.2.2
 
-2026-03-21  GovPay Team <govpay@link.it>
+2026-05-16  GovPay Team <govpay@link.it>
 
 	* Avanzamento versione 2.0.0-SNAPSHOT
 
@@ -80,6 +80,63 @@
 	- JaCoCo: 0.8.13 -> 0.8.14
 	- maven-surefire-plugin: 3.5.4 -> 3.5.5
 	- maven-failsafe-plugin: 3.5.4 -> 3.5.5
+  
+2026-05-12  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* Avanzamento versione 1.1.5-SNAPSHOT
+
+2026-05-05  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* Rilasciata versione 1.1.4
+
+	* Avanzamento versione 1.1.4-SNAPSHOT
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Spring Security: 6.5.9 -> 6.5.10 (allineamento alla versione managed da Spring Boot 3.5.14)
+
+2026-05-04  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* Rilasciata versione 1.1.3
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Spring Boot: 3.5.12 -> 3.5.14 (fix CVE-2026-40972, CVE-2026-40973, CVE-2026-40975, CVE-2026-40977; include Netty 4.1.132.Final fix CVE-2026-33870, CVE-2026-33871)
+	- Spring Framework: 6.2.17 -> 6.2.18 (fix CVE-2026-22740)
+	- Log4j2: 2.25.3 -> 2.25.4 (fix CVE-2026-34478, CVE-2026-34480, CVE-2026-34481)
+	- PostgreSQL: 42.7.9 -> 42.7.11 (fix CVE-2026-42198)
+
+2026-04-21  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [Build]
+        Aggiunta funzionalità
+        - Aggiunto workflow che si occupa di aggiornare la cache NVD ogni giorno
+	- Allineato script pipeline per utilizzare la cache aggiornata.
+
+2026-04-15  GovPay Team <govpay@link.it>
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Jackson: 2.21.0 -> 2.21.1 (fix GHSA-72hv-8253-57qq)
+	- Tomcat Embed: 10.1.52 -> 10.1.54 (fix GHSA-95jq-rwvf-vjx4)
+	- AssertJ: 3.27.6 -> 3.27.7 (fix GHSA-rqfh-9r24-8c9r)
+
+	* [Build]
+	Aggiunta funzionalità
+	- Aggiunto job OSV Scan nella pipeline GitHub Actions
+	- Aggiunta property owasp.ossindex.analyzer.enabled per configurazione OSS Index
+
+2026-03-24  GovPay Team <govpay@link.it>
+
+	* Avanzamento versione 1.1.3-SNAPSHOT
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Spring Boot: 3.5.9 -> 3.5.12 (fix CVE-2026-22731, CVE-2026-22733)
+	- Spring Framework: 6.2.15 -> 6.2.17 (fix CVE-2026-22737)
+	- Spring Security: 6.5.7 -> 6.5.9 (fix CVE-2026-22732)
+	- Spring Data: 2025.1.2 -> 2025.1.4
+	- Spring Batch: 5.2.4 -> 5.2.5
 
 2026-02-24  GovPay Team <govpay@link.it>
 

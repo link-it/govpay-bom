@@ -24,7 +24,7 @@ Per utilizzare questo BOM come parent nei progetti GovPay:
 <parent>
     <groupId>org.gov4j.govpay</groupId>
     <artifactId>govpay-bom</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.3</version>
 </parent>
 ```
 
@@ -49,11 +49,12 @@ Le dipendenze possono essere dichiarate senza specificare la versione:
 
 | Dipendenza | Versione |
 |------------|----------|
-| Spring Boot | 3.5.9 |
-| Spring Framework | 6.2.15 |
-| Spring Security | 6.5.7 |
-| Spring Data | 2025.0.7 |
-| Spring Batch | 5.2.4 |
+| Spring Boot | 3.5.14 |
+| Spring Framework | 6.2.18 |
+| Spring Security | 6.5.10 |
+| Spring Data | 2025.1.4 |
+| Spring Batch | 5.2.5 |
+| Tomcat Embed | 10.1.54 |
 
 ### Database
 
@@ -61,34 +62,45 @@ Le dipendenze possono essere dichiarate senza specificare la versione:
 |------------|----------|
 | Hibernate | 6.6.39.Final |
 | HikariCP | 6.3.3 |
-| PostgreSQL | 42.7.8 |
-| MySQL | 9.5.0 |
-| Oracle | 23.7.0.25.01 |
-| SQL Server | 12.8.1.jre11 |
-| H2 | 2.3.232 |
+| PostgreSQL | 42.7.11 |
+| MySQL | 9.6.0 |
+| Oracle | 23.26.1.0.0 |
+| SQL Server | 12.8.2.jre11 |
+| H2 | 2.4.240 |
 
 ### Logging
 
 | Dipendenza | Versione |
 |------------|----------|
 | SLF4J | 2.0.17 |
-| Logback | 1.5.22 |
+| Logback | 1.5.28 |
+| Log4j2 | 2.25.4 |
 
 ### JSON/XML
 
 | Dipendenza | Versione |
 |------------|----------|
-| Jackson | 2.19.4 |
-| Jakarta XML Bind | 4.0.2 |
-| JAXB Runtime | 4.0.5 |
+| Jackson | 2.21.1 |
+| Jakarta XML Bind | 4.0.5 |
+| JAXB Runtime | 4.0.6 |
+
+### Jakarta EE
+
+| Dipendenza | Versione |
+|------------|----------|
+| Jakarta Servlet API | 6.1.0 |
+| Jakarta Validation API | 3.1.0 |
+| Jakarta Persistence API | 3.1.0 |
+| Jakarta Annotation API | 3.0.0 |
 
 ### Utilities
 
 | Dipendenza | Versione |
 |------------|----------|
-| Commons Lang3 | 3.17.0 |
+| Commons Lang3 | 3.20.0 |
 | Commons IO | 2.21.0 |
-| Commons Codec | 1.18.0 |
+| Commons Codec | 1.21.0 |
+| Commons CSV | 1.14.1 |
 | Guava | 33.5.0-jre |
 | Lombok | 1.18.42 |
 | MapStruct | 1.6.3 |
@@ -98,15 +110,26 @@ Le dipendenze possono essere dichiarate senza specificare la versione:
 | Dipendenza | Versione |
 |------------|----------|
 | JUnit Jupiter | 5.12.2 |
-| Mockito | 5.17.0 |
-| AssertJ | 3.27.6 |
+| Mockito | 5.21.0 |
+| AssertJ | 3.27.7 |
 | Testcontainers | 1.21.4 |
 
 ### API Documentation
 
 | Dipendenza | Versione |
 |------------|----------|
-| SpringDoc OpenAPI | 3.0.0 |
+| SpringDoc OpenAPI | 2.8.15 |
+| OpenAPI Generator | 7.8.0 |
+| Swagger Annotations (v1) | 1.6.2 |
+| Swagger Annotations (v3) | 2.2.20 |
+| jackson-databind-nullable | 0.2.6 |
+
+### Code Coverage & Security
+
+| Dipendenza | Versione |
+|------------|----------|
+| JaCoCo | 0.8.13 |
+| OWASP Dependency Check | 12.2.0 |
 
 ## Build
 
