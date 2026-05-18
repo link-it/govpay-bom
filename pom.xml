@@ -122,8 +122,9 @@
         <!-- OWASP Dependency Check -->
         <owasp.plugin.version>12.2.2</owasp.plugin.version>
         <owasp.phase>verify</owasp.phase>
-        <owasp.autoUpdate>true</owasp.autoUpdate>
+        <owasp.autoUpdate>false</owasp.autoUpdate> <!-- WORKAROUND: disabilitato per bug NVD timestamp parsing (DependencyCheck #8424) -->
         <owasp.failBuildOnCVSS>11</owasp.failBuildOnCVSS>
+        <owasp.ossindex.analyzer.enabled>true</owasp.ossindex.analyzer.enabled> <!-- Abilita/disabilita l'analisi delle vulnerabilità tramite OSS Index, se disabilitata viene usato il database CVE di NIST -->
 
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
@@ -580,6 +581,7 @@
                     <configuration>
                         <autoUpdate>${owasp.autoUpdate}</autoUpdate>
                         <failBuildOnCVSS>${owasp.failBuildOnCVSS}</failBuildOnCVSS>
+                        <ossindexAnalyzerEnabled>${owasp.ossindex.analyzer.enabled}</ossindexAnalyzerEnabled>
                         <format>ALL</format>
                         <nvdApiDelay>120000</nvdApiDelay>
                         <nvdMaxRetryCount>3</nvdMaxRetryCount>
