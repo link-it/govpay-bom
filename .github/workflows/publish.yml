@@ -22,13 +22,22 @@ jobs:
           java-version: "21"
           cache: maven
 
+      - name: Read OWASP plugin version from pom.xml
+        id: owasp
+        run: |
+          VERSION="$(mvn -q -DforceStdout help:evaluate -Dexpression=owasp.plugin.version)"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "OWASP Dependency-Check version: $VERSION"
+
       - name: Cache OWASP Dependency-Check DB
         uses: actions/cache@v4
         with:
           path: .dependency-check/data
-          key: ${{ runner.os }}-owasp-${{ github.sha }}
+          # La chiave include la versione del plugin: bump del plugin -> cache invalidata
+          # (lo schema del DB cambia tra release maggiori/minori).
+          key: ${{ runner.os }}-owasp-v${{ steps.owasp.outputs.version }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-owasp-
+            ${{ runner.os }}-owasp-v${{ steps.owasp.outputs.version }}-
 
       - name: OWASP Dependency Check
         env:

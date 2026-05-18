@@ -37,6 +37,13 @@
 	(owasp.plugin.version) e la include nella chiave di cache per evitare
 	mismatch di schema al bump del plugin.
 
+	* [Build]
+	Correzione
+	Workflow publish: la cache OWASP usa una chiave includendo la versione
+	del plugin letta dinamicamente da pom.xml, in modo che bump del plugin
+	invalidi automaticamente la cache (evita errori "Database schema does
+	not match this version of dependency-check" tra release del plugin).
+
 2026-03-21  GovPay Team <govpay@link.it>
 
 	* Avanzamento versione 2.0.0-SNAPSHOT
