@@ -95,6 +95,18 @@
 	- maven-surefire-plugin: 3.5.4 -> 3.5.5
 	- maven-failsafe-plugin: 3.5.4 -> 3.5.5
   
+2026-05-18  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [Build]
+	Correzione
+	Workflow refresh-owasp-db:
+	- Allineata la versione della CLI Dependency-Check con quella del plugin
+	  Maven (lettura dinamica da pom.xml) per evitare mismatch dello schema DB.
+	- Inclusa la versione nella chiave di cache: bump del plugin invalida
+	  automaticamente la cache.
+	- Aggiornato URL del repository (jeremylong/DependencyCheck ->
+	  dependency-check/DependencyCheck).
+
 2026-05-12  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* Avanzamento versione 1.1.5-SNAPSHOT
