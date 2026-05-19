@@ -1,3 +1,11 @@
+2026-05-19  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [Build]
+	Correzione
+	Workflow refresh-owasp-db: aggiornato actions/checkout v4 -> v6 per
+	eliminare il warning sulla deprecazione di Node.js 20 sui runner GitHub
+	(allineamento con publish.yml che usa gia' v6).
+
 2026-05-18  GovPay Team <govpay@link.it>
 
 	* [BOM]
