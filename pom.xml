@@ -74,7 +74,10 @@
         <!-- Logging -->
         <slf4j.version>2.0.17</slf4j.version>
         <logback.version>1.5.32</logback.version>
-        <log4j2.version>2.25.3</log4j2.version>
+        <log4j2.version>2.25.4</log4j2.version> <!-- CVE-2026-34479, CVE-2026-34477 -->
+
+        <!-- Override Spring Boot tomcat.version per CVE -->
+        <tomcat.version>11.0.22</tomcat.version> <!-- CVE-2026-41293, CVE-2026-43512..43515, CVE-2026-41284, CVE-2026-42498 -->
 
         <!-- JSON/XML -->
         <jackson.version>3.1.3</jackson.version>
