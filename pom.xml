@@ -76,7 +76,11 @@
         <logback.version>1.5.32</logback.version>
         <log4j2.version>2.25.4</log4j2.version> <!-- CVE-2026-34479, CVE-2026-34477 -->
 
-        <!-- Override Spring Boot tomcat.version per CVE -->
+        <!-- Override Tomcat versione gestita da Spring Boot per CVE.
+             NOTA: l'override avviene tramite dichiarazione esplicita di tomcat-embed-*
+             in <dependencyManagement> PRIMA dell'import di spring-boot-dependencies
+             (per i BOM importati vale first-declared-wins). La sola property non basta
+             perché valida solo con parent inheritance, non con scope=import. -->
         <tomcat.version>11.0.22</tomcat.version> <!-- CVE-2026-41293, CVE-2026-43512..43515, CVE-2026-41284, CVE-2026-42498 -->
 
         <!-- JSON/XML -->
@@ -146,6 +150,24 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Override Tomcat per CVE: DEVE precedere spring-boot-dependencies
+                 (per i BOM importati con scope=import vale first-declared-wins). -->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-websocket</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
             <!-- Spring Boot BOM -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>

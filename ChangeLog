@@ -4,9 +4,13 @@
 	Correzione
 	Risoluzione segnalazioni CVE:
 	- Log4j2: 2.25.3 -> 2.25.4 (fix CVE-2026-34479, CVE-2026-34477)
-	- Tomcat: override versione Spring Boot a 11.0.22 (fix CVE-2026-41293,
-	  CVE-2026-43512, CVE-2026-43513, CVE-2026-43514, CVE-2026-43515,
-	  CVE-2026-41284, CVE-2026-42498)
+	- Tomcat: override a 11.0.22 (fix CVE-2026-41293, CVE-2026-43512,
+	  CVE-2026-43513, CVE-2026-43514, CVE-2026-43515, CVE-2026-41284,
+	  CVE-2026-42498). Override realizzato dichiarando esplicitamente
+	  tomcat-embed-core/el/websocket in <dependencyManagement> prima
+	  dell'import di spring-boot-dependencies (per i BOM importati con
+	  scope=import vale first-declared-wins; la sola property
+	  <tomcat.version> non è sufficiente).
 
 2026-05-19  Giuliano Pintori <giuliano.pintori@link.it>
 
