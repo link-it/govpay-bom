@@ -17,11 +17,15 @@
 
 	* [BOM]
 	Pulizia
-	Rimossi gli override espliciti di Tomcat (tomcat-embed-core/el/websocket
-	in dependencyManagement e property tomcat.version) introdotti per le
-	CVE-2026-41293/43512..43515/41284/42498: Spring Boot 4.1.0 include
-	nativamente Tomcat 11.0.22. Stesso discorso per log4j2 2.25.4
-	(CVE-2026-34479, CVE-2026-34477) gia' fornito da Spring Boot 4.1.0.
+	Rimossi gli override CVE-driven ormai ridondanti dopo l'aggiornamento
+	a Spring Boot 4.1.0:
+	- Tomcat (tomcat-embed-core/el/websocket in dependencyManagement +
+	  property tomcat.version) introdotto per
+	  CVE-2026-41293/43512..43515/41284/42498. Spring Boot 4.1.0 include
+	  nativamente Tomcat 11.0.22.
+	- log4j2 (log4j-api e log4j-to-slf4j in dependencyManagement +
+	  property log4j2.version) introdotto per CVE-2026-34479,
+	  CVE-2026-34477. Spring Boot 4.1.0 include nativamente log4j2 2.25.4.
 
 2026-05-21  Giuliano Pintori <giuliano.pintori@link.it>
 
