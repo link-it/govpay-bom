@@ -1,3 +1,28 @@
+2026-06-15  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Spring Boot: 4.0.6 -> 4.1.0
+	- Spring Framework: 7.0.7 -> 7.0.8
+	- Spring Security: 7.0.5 -> 7.1.0
+	- Spring Data: 2025.1.4 -> 2026.0.0
+	- Spring Batch: 6.0.3 -> 6.0.4
+	- Hibernate ORM: 7.2.7.Final -> 7.4.1.Final
+	- HikariCP: 7.0.2 -> 7.1.0
+	- Jackson BOM: 3.1.3 -> 3.1.4
+	- Logback: 1.5.32 -> 1.5.34
+	- JAXB Runtime: 4.0.8 -> 4.0.9
+	- OpenAPI Generator: 7.22.0 -> 7.23.0
+	- Swagger v3: 2.2.50 -> 2.2.51
+
+	* [BOM]
+	Pulizia
+	Rimossi gli override espliciti di Tomcat (tomcat-embed-core/el/websocket
+	in dependencyManagement e property tomcat.version) introdotti per le
+	CVE-2026-41293/43512..43515/41284/42498: Spring Boot 4.1.0 include
+	nativamente Tomcat 11.0.22. Stesso discorso per log4j2 2.25.4
+	(CVE-2026-34479, CVE-2026-34477) gia' fornito da Spring Boot 4.1.0.
+
 2026-05-21  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]
