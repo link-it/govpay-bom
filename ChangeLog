@@ -1,6 +1,15 @@
 2026-06-15  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]
+	Correzione
+	Override transitivo di swagger-ui per risoluzione segnalazioni CVE:
+	- swagger-ui (org.webjars): 5.32.2 -> 5.32.6 (fix CVE-2026-41238,
+	  CVE-2026-41239, CVE-2026-41240; 5.32.6 include DOMPurify 3.4.0).
+	  La versione 5.32.2 era tirata transitivamente da springdoc-openapi
+	  3.0.3: aggiunti property swagger-ui.version e dichiarazione esplicita
+	  in dependencyManagement.
+
+	* [BOM]
 	Aggiornamento dipendenze
 	- Spring Boot: 4.0.6 -> 4.1.0
 	- Spring Framework: 7.0.7 -> 7.0.8
