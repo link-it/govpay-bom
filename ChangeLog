@@ -2,6 +2,16 @@
 
 	* [Build]
 	Correzione
+	Plugin dependency-check-maven: tuning dei parametri NVD per allinearsi
+	al workflow refresh-owasp-db (che ha dimostrato di essere la
+	configurazione vincente per resilienza alle rate-limit dell'API NVD):
+	- nvdMaxRetryCount: 3 -> 30 (numero ritentativi sulle richieste NVD)
+	- nvdApiDelay: 120000 -> 4000 ms (delay tra richieste; il valore
+	  precedente era eccessivo: aumentare il timeout invece dei retry
+	  non risolve il problema dei 503 dell'API NVD).
+
+	* [Build]
+	Correzione
 	Plugin dependency-check-maven: rinominato il parametro di configurazione
 	ossindexAnalyzerEnabled -> ossIndexAnalyzerEnabled per eliminare il
 	warning di deprecazione introdotto nelle ultime release del plugin.

@@ -127,6 +127,8 @@
         <owasp.autoUpdate>false</owasp.autoUpdate> <!-- WORKAROUND: disabilitato per bug NVD timestamp parsing (DependencyCheck #8424) -->
         <owasp.failBuildOnCVSS>11</owasp.failBuildOnCVSS>
         <owasp.ossindex.analyzer.enabled>true</owasp.ossindex.analyzer.enabled> <!-- Abilita/disabilita l'analisi delle vulnerabilità tramite OSS Index, se disabilitata viene usato il database CVE di NIST -->
+        <owasp.nvdMaxRetryCount>30</owasp.nvdMaxRetryCount> <!-- numero ritentativi sulle richieste all'API NVD (resilienza a rate-limit/503) -->
+        <owasp.nvdApiDelay>4000</owasp.nvdApiDelay> <!-- delay (ms) tra richieste API NVD -->
 
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
@@ -581,8 +583,8 @@
                         <failBuildOnCVSS>${owasp.failBuildOnCVSS}</failBuildOnCVSS>
                         <ossIndexAnalyzerEnabled>${owasp.ossindex.analyzer.enabled}</ossIndexAnalyzerEnabled>
                         <format>ALL</format>
-                        <nvdApiDelay>120000</nvdApiDelay>
-                        <nvdMaxRetryCount>3</nvdMaxRetryCount>
+                        <nvdApiDelay>${owasp.nvdApiDelay}</nvdApiDelay>
+                        <nvdMaxRetryCount>${owasp.nvdMaxRetryCount}</nvdMaxRetryCount>
                     </configuration>
                     <executions>
                         <execution>
