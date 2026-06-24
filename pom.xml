@@ -579,7 +579,7 @@
                     <configuration>
                         <autoUpdate>${owasp.autoUpdate}</autoUpdate>
                         <failBuildOnCVSS>${owasp.failBuildOnCVSS}</failBuildOnCVSS>
-                        <ossindexAnalyzerEnabled>${owasp.ossindex.analyzer.enabled}</ossindexAnalyzerEnabled>
+                        <ossIndexAnalyzerEnabled>${owasp.ossindex.analyzer.enabled}</ossIndexAnalyzerEnabled>
                         <format>ALL</format>
                         <nvdApiDelay>120000</nvdApiDelay>
                         <nvdMaxRetryCount>3</nvdMaxRetryCount>

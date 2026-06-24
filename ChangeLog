@@ -1,3 +1,11 @@
+2026-06-24  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [Build]
+	Correzione
+	Plugin dependency-check-maven: rinominato il parametro di configurazione
+	ossindexAnalyzerEnabled -> ossIndexAnalyzerEnabled per eliminare il
+	warning di deprecazione introdotto nelle ultime release del plugin.
+
 2026-06-15  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]
