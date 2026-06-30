@@ -243,7 +243,8 @@
 
             <dependency>
                 <groupId>tools.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-datetime</artifactId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
 
             <!-- JUnit BOM -->
