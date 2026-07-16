@@ -1,3 +1,17 @@
+2026-07-16  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Jackson BOM: 3.1.4 -> 3.2.1
+	- Logback: 1.5.35 -> 1.5.38
+	- PostgreSQL Driver: 42.7.11 -> 42.7.13
+	- Swagger v3: 2.2.51 -> 2.2.52
+	- swagger-ui (org.webjars): 5.32.6 -> 5.32.8
+
+	* [Build]
+	Aggiornamento plugin
+	- central-publishing-maven-plugin: 0.10.0 -> 0.11.0
+
 2026-07-14  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* Avanzamento versione 2.0.2-SNAPSHOT

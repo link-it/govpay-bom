@@ -65,7 +65,7 @@
         <!-- Database -->
         <hibernate.version>7.4.1.Final</hibernate.version>
         <hikaricp.version>7.1.0</hikaricp.version>
-        <postgresql.version>42.7.11</postgresql.version>
+        <postgresql.version>42.7.13</postgresql.version>
         <mysql.version>9.7.0</mysql.version>
         <oracle.version>23.26.2.0.0</oracle.version>
         <mssql.version>13.4.0.jre11</mssql.version>
@@ -73,10 +73,10 @@
 
         <!-- Logging -->
         <slf4j.version>2.0.17</slf4j.version>
-        <logback.version>1.5.35</logback.version>
+        <logback.version>1.5.38</logback.version>
 
         <!-- JSON/XML -->
-        <jackson.version>3.1.4</jackson.version>
+        <jackson.version>3.2.1</jackson.version>
         <jakarta-xml-bind.version>4.0.5</jakarta-xml-bind.version>
         <jaxb-runtime.version>4.0.9</jaxb-runtime.version>
         <jaxb2-maven-plugin.version>4.1.0</jaxb2-maven-plugin.version>
@@ -106,20 +106,20 @@
         <springdoc-openapi.version>3.0.3</springdoc-openapi.version>
         <!-- Override swagger-ui (tirato transitivamente da springdoc 3.0.3 a 5.32.2):
              5.32.6 include DOMPurify 3.4.0 e risolve CVE-2026-41238/41239/41240 -->
-        <swagger-ui.version>5.32.6</swagger-ui.version>
+        <swagger-ui.version>5.32.8</swagger-ui.version>
 
         <!-- OpenAPI Generator -->
         <openapi.tool.codegen.version>7.23.0</openapi.tool.codegen.version>
         <jackson-databind-nullable.version>0.2.10</jackson-databind-nullable.version>
         <swagger-v1.version>1.6.2</swagger-v1.version>
-        <swagger-v3.version>2.2.51</swagger-v3.version>
+        <swagger-v3.version>2.2.52</swagger-v3.version>
 
         <!-- JaCoCo -->
         <jacoco.version>0.8.14</jacoco.version>
 
         <!-- Publishing -->
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
-        <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
 
         <!-- OWASP Dependency Check -->
         <owasp.plugin.version>12.2.2</owasp.plugin.version>
