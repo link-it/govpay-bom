@@ -1,5 +1,7 @@
 2026-07-23  Giuliano Pintori <giuliano.pintori@link.it>
 
+	* Rilasciata versione 2.0.3
+
 	* [BOM]
 	Correzione
 	Risoluzione segnalazione OSV su Jackson (GHSA-5gvw-p9qm-jgwh, CVSS 6.5,
