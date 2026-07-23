@@ -1,5 +1,17 @@
 2026-07-23  Giuliano Pintori <giuliano.pintori@link.it>
 
+	* [BOM]
+	Correzione
+	Risoluzione segnalazione OSV su Jackson (GHSA-5gvw-p9qm-jgwh, CVSS 6.5,
+	@JsonView bypassed for @JsonUnwrapped container properties).
+	La property <jackson.version>3.2.1</jackson.version> non era effettiva:
+	spring-boot-dependencies veniva importato prima di jackson-bom e imponeva
+	la propria versione di Jackson (3.1.4) per first-declared-wins, lasciando
+	jackson-databind vulnerabile. Spostato l'import di jackson-bom PRIMA di
+	spring-boot-dependencies in dependencyManagement: jackson-databind ora
+	risolve correttamente a 3.2.1, che include il fix del CVE per il branch
+	3.2.x.
+
 	* Avanzamento versione 2.0.3-SNAPSHOT
 
 2026-07-21  Giuliano Pintori <giuliano.pintori@link.it>

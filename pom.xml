@@ -147,6 +147,21 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--
+                Jackson 3 BOM: importato PRIMA di spring-boot-dependencies.
+                Per i BOM importati con scope=import vale first-declared-wins;
+                se lasciassimo spring-boot-dependencies davanti, imporrebbe la
+                sua versione managed di jackson (piu' vecchia) ignorando la
+                property ${jackson.version}.
+            -->
+            <dependency>
+                <groupId>tools.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- Spring Boot BOM -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -232,15 +247,7 @@
                 <version>${spring-batch.version}</version>
             </dependency>
 
-            <!-- Jackson 3 BOM -->
-            <dependency>
-                <groupId>tools.jackson</groupId>
-                <artifactId>jackson-bom</artifactId>
-                <version>${jackson.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
+            <!-- Jackson 3: BOM importato in cima; qui restano solo i moduli non gestiti dal jackson-bom -->
             <dependency>
                 <groupId>tools.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
