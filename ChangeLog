@@ -1,3 +1,22 @@
+2026-07-24  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* Avanzamento versione 2.0.4-SNAPSHOT
+
+	* [BOM]
+	Correzione
+	Risoluzione segnalazioni OSV su Netty (10 GHSA, CVSS 5.7-8.7):
+	- Netty (netty-bom): override a 4.2.16.Final (Spring Boot 4.1.0
+	  fornisce 4.2.15.Final, vulnerabile). Fix per:
+	  - netty-codec-compression: GHSA-558v-64gr-wgg4 (CVSS 8.7)
+	  - netty-codec-http: GHSA-4mp9-239f-g9hg, GHSA-6cqp-g7gg-8hr5,
+	    GHSA-6jqx-86gh-f27w, GHSA-gcjf-9mgh-3p7g, GHSA-jppx-w49h-x2qq,
+	    GHSA-mvh2-crg5-v77c, GHSA-q4f6-jm68-57ww
+	  - netty-codec-http2: GHSA-c69g-56f8-xwqj
+	  - netty-codec-http3: GHSA-hpcc-26xq-25fv
+	Override realizzato importando netty-bom PRIMA di
+	spring-boot-dependencies in <dependencyManagement> (first-declared-wins
+	per BOM importati con scope=import).
+
 2026-07-23  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* Rilasciata versione 2.0.3

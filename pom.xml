@@ -6,12 +6,12 @@
 
 	<groupId>org.gov4j.govpay</groupId>
 	<artifactId>govpay-bom</artifactId>
-	<version>2.0.3</version>
+	<version>2.0.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>GovPay BOM</name>
 	<description>Parent POM for dependency version management across GovPay projects</description>
-	<url>https://gov4j.org/maven/govpay/govpay-bom/2.0.3</url>
+	<url>https://gov4j.org/maven/govpay/govpay-bom/2.0.4-SNAPSHOT</url>
 
 	<licenses>
 		<license>
@@ -74,6 +74,9 @@
         <!-- Logging -->
         <slf4j.version>2.0.17</slf4j.version>
         <logback.version>1.5.38</logback.version>
+
+        <!-- Networking -->
+        <netty.version>4.2.16.Final</netty.version> <!-- override Spring Boot per CVE: vedi netty-bom in dependencyManagement -->
 
         <!-- JSON/XML -->
         <jackson.version>3.2.1</jackson.version>
@@ -158,6 +161,25 @@
                 <groupId>tools.jackson</groupId>
                 <artifactId>jackson-bom</artifactId>
                 <version>${jackson.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--
+                Netty BOM: importato PRIMA di spring-boot-dependencies per
+                sovrascrivere la versione managed (vulnerabile) fornita da
+                Spring Boot 4.1.0 (netty 4.2.15.Final). Fix per:
+                GHSA-558v-64gr-wgg4 (netty-codec-compression),
+                GHSA-4mp9-239f-g9hg, GHSA-6cqp-g7gg-8hr5, GHSA-6jqx-86gh-f27w,
+                GHSA-gcjf-9mgh-3p7g, GHSA-jppx-w49h-x2qq, GHSA-mvh2-crg5-v77c,
+                GHSA-q4f6-jm68-57ww (netty-codec-http),
+                GHSA-c69g-56f8-xwqj (netty-codec-http2),
+                GHSA-hpcc-26xq-25fv (netty-codec-http3).
+            -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>${netty.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
