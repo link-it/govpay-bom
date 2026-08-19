@@ -63,23 +63,27 @@
         <spring-batch.version>6.0.4</spring-batch.version>
 
         <!-- Database -->
-        <hibernate.version>7.4.1.Final</hibernate.version>
+        <hibernate.version>7.4.5.Final</hibernate.version>
         <hikaricp.version>7.1.0</hikaricp.version>
         <postgresql.version>42.7.13</postgresql.version>
-        <mysql.version>9.7.0</mysql.version>
-        <oracle.version>23.26.2.0.0</oracle.version>
+        <mysql.version>26.7.0</mysql.version> <!-- override Spring Boot per CVE-2026-60586/60623/60624/61082 (Oracle CPU: affette 9.7.0-9.7.1) -->
+        <oracle.version>23.26.3.0.0</oracle.version>
         <mssql.version>13.4.0.jre11</mssql.version>
         <h2.version>2.4.240</h2.version>
 
         <!-- Logging -->
-        <slf4j.version>2.0.17</slf4j.version>
+        <slf4j.version>2.0.18</slf4j.version>
         <logback.version>1.5.38</logback.version>
+        <log4j2.version>2.25.5</log4j2.version> <!-- override Spring Boot per CVE-2026-49844: vedi log4j-bom in dependencyManagement -->
 
         <!-- Networking -->
-        <netty.version>4.2.16.Final</netty.version> <!-- override Spring Boot per CVE: vedi netty-bom in dependencyManagement -->
+        <netty.version>4.2.17.Final</netty.version> <!-- override Spring Boot per CVE: vedi netty-bom in dependencyManagement -->
+        <httpclient5.version>5.6.4</httpclient5.version> <!-- override Spring Boot per CVE-2026-64607 (fix 5.6.3) -->
+        <httpcore5.version>5.4.3</httpcore5.version> <!-- override Spring Boot per CVE-2026-54399 e CVE-2026-54428 -->
 
         <!-- JSON/XML -->
-        <jackson.version>3.2.1</jackson.version>
+        <jackson.version>3.2.2</jackson.version>
+        <jackson2.version>2.21.5</jackson2.version> <!-- override Spring Boot (2.21.4) per il ramo Jackson 2 residuo: vedi jackson-bom 2.x in dependencyManagement -->
         <jakarta-xml-bind.version>4.0.5</jakarta-xml-bind.version>
         <jaxb-runtime.version>4.0.9</jaxb-runtime.version>
         <jaxb2-maven-plugin.version>4.1.0</jaxb2-maven-plugin.version>
@@ -93,9 +97,9 @@
         <!-- Utilities -->
         <commons-lang3.version>3.20.0</commons-lang3.version>
         <commons-io.version>2.22.0</commons-io.version>
-        <commons-codec.version>1.22.0</commons-codec.version>
+        <commons-codec.version>1.22.1</commons-codec.version>
         <commons-csv.version>1.14.1</commons-csv.version>
-        <guava.version>33.6.0-jre</guava.version>
+        <guava.version>33.7.1-jre</guava.version>
         <lombok.version>1.18.46</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
 
@@ -106,16 +110,16 @@
         <testcontainers.version>2.0.5</testcontainers.version>
 
         <!-- API Documentation -->
-        <springdoc-openapi.version>3.0.3</springdoc-openapi.version>
-        <!-- Override swagger-ui (tirato transitivamente da springdoc 3.0.3 a 5.32.2):
-             5.32.6 include DOMPurify 3.4.0 e risolve CVE-2026-41238/41239/41240 -->
-        <swagger-ui.version>5.32.8</swagger-ui.version>
+        <springdoc-openapi.version>3.1.0</springdoc-openapi.version>
+        <!-- Override swagger-ui (springdoc 3.1.0 lo tira transitivamente a 5.32.11):
+             da 5.32.6 include DOMPurify 3.4.0 e risolve CVE-2026-41238/41239/41240 -->
+        <swagger-ui.version>5.32.14</swagger-ui.version>
 
         <!-- OpenAPI Generator -->
         <openapi.tool.codegen.version>7.23.0</openapi.tool.codegen.version>
-        <jackson-databind-nullable.version>0.2.10</jackson-databind-nullable.version>
+        <jackson-databind-nullable.version>0.2.11</jackson-databind-nullable.version>
         <swagger-v1.version>1.6.2</swagger-v1.version>
-        <swagger-v3.version>2.2.52</swagger-v3.version>
+        <swagger-v3.version>2.2.54</swagger-v3.version>
 
         <!-- JaCoCo -->
         <jacoco.version>0.8.14</jacoco.version>
@@ -166,9 +170,28 @@
             </dependency>
 
             <!--
+                Jackson 2 BOM: GovPay usa Jackson 3, ma il ramo 2.x resta
+                gestito da spring-boot-dependencies (2.21.4, vulnerabile) e
+                puo' arrivare transitivamente. Import PRIMA di
+                spring-boot-dependencies per forzare 2.21.5. Fix per:
+                GHSA-5gvw-p9qm-jgwh / CVE-2026-59889,
+                GHSA-5jmj-h7xm-6q6v / CVE-2026-54515,
+                GHSA-mhm7-754m-9p8w (jackson-databind).
+            -->
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson2.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--
                 Netty BOM: importato PRIMA di spring-boot-dependencies per
                 sovrascrivere la versione managed (vulnerabile) fornita da
                 Spring Boot 4.1.0 (netty 4.2.15.Final). Fix per:
+                GHSA-8c42-7qj2-3j46 / CVE-2026-59903 (netty-codec-http),
+                GHSA-2qj4-mmr9-4v2f / CVE-2026-59902 (netty-transport-sctp),
                 GHSA-558v-64gr-wgg4 (netty-codec-compression),
                 GHSA-4mp9-239f-g9hg, GHSA-6cqp-g7gg-8hr5, GHSA-6jqx-86gh-f27w,
                 GHSA-gcjf-9mgh-3p7g, GHSA-jppx-w49h-x2qq, GHSA-mvh2-crg5-v77c,
@@ -184,15 +207,33 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Spring Boot BOM -->
+            <!--
+                Log4j BOM: importato PRIMA di spring-boot-dependencies per
+                sovrascrivere la versione managed (vulnerabile) fornita da
+                Spring Boot 4.1.0 (log4j 2.25.4). Fix per:
+                CVE-2026-49844 / GHSA-qv9r-c865-cp47 (log4j-api).
+                Nota: la property log4j2.version di Spring Boot non e'
+                ereditabile (BOM importato, non parent), quindi serve l'import.
+            -->
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-bom</artifactId>
+                <version>${log4j2.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 
+            <!--
+                Spring Framework / Security / Data: importati PRIMA di
+                spring-boot-dependencies. Con l'ordine inverso questi import
+                erano inerti (first-declared-wins per i BOM con scope=import) e
+                le property qui sotto non avevano effetto: un eventuale
+                aggiornamento di spring-framework.version avrebbe alzato solo
+                spring-web e spring-webmvc (entry esplicite piu' sotto),
+                lasciando il resto del framework alla versione di Spring Boot.
+                Oggi i valori coincidono con quelli di Spring Boot 4.1.0, quindi
+                le versioni risolte non cambiano.
+            -->
             <!-- Spring Framework -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -216,6 +257,15 @@
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-bom</artifactId>
                 <version>${spring-data.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Spring Boot BOM -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -363,6 +413,40 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-core</artifactId>
                 <version>${logback.version}</version>
+            </dependency>
+
+            <!--
+                HTTP Client (Apache HttpComponents 5)
+                Override delle versioni managed da Spring Boot 4.1.0
+                (httpclient5 5.6.1, httpcore5 5.4.2) per:
+                CVE-2026-64607 / GHSA-hjcp-jmpx-g3qm (httpclient5, fix 5.6.3),
+                CVE-2026-54399 / GHSA-hf6x-8p5f-cgmf (httpcore5, fix 5.4.3),
+                CVE-2026-54428 / GHSA-v3jc-474w-2wm6 (httpcore5-h2, fix 5.4.3).
+            -->
+            <dependency>
+                <groupId>org.apache.httpcomponents.client5</groupId>
+                <artifactId>httpclient5</artifactId>
+                <version>${httpclient5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.client5</groupId>
+                <artifactId>httpclient5-fluent</artifactId>
+                <version>${httpclient5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.core5</groupId>
+                <artifactId>httpcore5</artifactId>
+                <version>${httpcore5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.core5</groupId>
+                <artifactId>httpcore5-h2</artifactId>
+                <version>${httpcore5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents.core5</groupId>
+                <artifactId>httpcore5-reactive</artifactId>
+                <version>${httpcore5.version}</version>
             </dependency>
 
             <!-- Jakarta EE -->

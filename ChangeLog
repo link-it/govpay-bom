@@ -1,3 +1,76 @@
+2026-08-19  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Correzione
+	Risoluzione segnalazioni dependency-check su GovPay Common:
+	- Apache HttpComponents Client5: 5.6.1 -> 5.6.4 (override della versione
+	  managed da Spring Boot 4.1.0). Fix per CVE-2026-64607 /
+	  GHSA-hjcp-jmpx-g3qm (connection leak su errore di decode del
+	  Content-Encoding, fix upstream in 5.6.3).
+	- Apache HttpComponents Core5 (httpcore5, httpcore5-h2): 5.4.2 -> 5.4.3
+	  (override della versione managed da Spring Boot 4.1.0). Fix per
+	  CVE-2026-54399 / GHSA-hf6x-8p5f-cgmf (memory exhaustion nel parsing
+	  degli header HTTP/1) e CVE-2026-54428 / GHSA-v3jc-474w-2wm6
+	  (HPackDecoder senza limite di header list size prima del SETTINGS ACK).
+	- Log4j (log4j-bom): 2.25.4 -> 2.25.5 (override della versione managed da
+	  Spring Boot 4.1.0). Fix per CVE-2026-49844 / GHSA-qv9r-c865-cp47
+	  (encoding errato dei valori floating-point non finiti in MapMessage).
+	  Override realizzato importando log4j-bom PRIMA di
+	  spring-boot-dependencies: la property log4j2.version di Spring Boot non
+	  e' ereditabile perche' il BOM e' importato e non e' il parent.
+	- MySQL Connector/J: 9.7.0 -> 26.7.0. Fix per CVE-2026-60586,
+	  CVE-2026-60623, CVE-2026-60624, CVE-2026-61082 (Oracle CPU: versioni
+	  affette 9.7.0-9.7.1).
+	- Jackson BOM (Jackson 3): 3.2.1 -> 3.2.2 (allineamento all'ultima patch
+	  del branch 3.2.x).
+	Risoluzione ulteriori segnalazioni OSV emerse dalla scansione dell'intero
+	dependencyManagement effettivo:
+	- Netty (netty-bom): 4.2.16.Final -> 4.2.17.Final. Fix per
+	  CVE-2026-59903 / GHSA-8c42-7qj2-3j46 (netty-codec-http, cache poisoning
+	  via sovrascrittura dell'header Vary in CORS) e CVE-2026-59902 /
+	  GHSA-2qj4-mmr9-4v2f (netty-transport-sctp, memory exhaustion).
+	- Jackson 2 (com.fasterxml.jackson:jackson-bom): override a 2.21.5 della
+	  versione managed da Spring Boot 4.1.0 (2.21.4). GovPay usa Jackson 3,
+	  ma il ramo 2.x resta gestito dal BOM di Spring Boot e puo' arrivare
+	  transitivamente. Fix per CVE-2026-59889 / GHSA-5gvw-p9qm-jgwh,
+	  CVE-2026-54515 / GHSA-5jmj-h7xm-6q6v e GHSA-mhm7-754m-9p8w.
+
+	Nota: le segnalazioni su HdrHistogram 2.2.2 (CVE-2026-14683,
+	CVE-2026-14686) non sono risolvibili: 2.2.2 e' l'ultima versione
+	pubblicata e non esiste una release con il fix. Entrambe sono contestate
+	(disputed) dal vendor, con CVSS 3.3 LOW e vettore di attacco solo locale;
+	la libreria arriva transitivamente da Micrometer e non e' gestita in
+	questo BOM.
+
+	* [BOM]
+	Correzione
+	Spostati gli import di spring-framework-bom, spring-security-bom e
+	spring-data-bom PRIMA di spring-boot-dependencies in dependencyManagement.
+	Con l'ordine precedente i tre import erano inerti (first-declared-wins per
+	i BOM con scope=import) e le property spring-framework.version,
+	spring-security.version e spring-data.version non avevano effetto: un
+	aggiornamento di spring-framework.version avrebbe alzato solo spring-web e
+	spring-webmvc, che hanno entry esplicite, lasciando il resto del framework
+	alla versione di Spring Boot e producendo un classpath disallineato.
+	Stessa classe di problema gia' corretta per jackson-bom nella 2.0.3.
+	I valori attuali coincidono con quelli gestiti da Spring Boot 4.1.0
+	(framework 7.0.8, security 7.1.0, data 2026.0.0, batch 6.0.4), quindi
+	nessuna versione risolta cambia: verificato che l'effective POM e'
+	identico prima e dopo lo spostamento su tutti i 1891 artefatti gestiti.
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- SLF4J: 2.0.17 -> 2.0.18 (allineamento a Spring Boot 4.1.0, che gestisce
+	  gia' la 2.0.18: la property del BOM la stava abbassando).
+	- springdoc-openapi: 3.0.3 -> 3.1.0 (build su spring-boot-parent 4.1.0).
+	- Hibernate ORM: 7.4.1.Final -> 7.4.5.Final
+	- Google Guava: 33.6.0-jre -> 33.7.1-jre
+	- Oracle JDBC (ojdbc11): 23.26.2.0.0 -> 23.26.3.0.0
+	- Commons Codec: 1.22.0 -> 1.22.1
+	- Swagger v3 (swagger-annotations): 2.2.52 -> 2.2.54
+	- swagger-ui (org.webjars): 5.32.8 -> 5.32.14
+	- jackson-databind-nullable: 0.2.10 -> 0.2.11
+
 2026-07-24  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* Avanzamento versione 2.0.4-SNAPSHOT
