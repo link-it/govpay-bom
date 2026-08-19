@@ -1,5 +1,7 @@
 2026-08-19  Giuliano Pintori <giuliano.pintori@link.it>
 
+	* Rilasciata versione 2.0.4
+
 	* [BOM]
 	Correzione
 	Risoluzione segnalazioni dependency-check su GovPay Common:
