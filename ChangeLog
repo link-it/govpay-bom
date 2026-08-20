@@ -1,3 +1,21 @@
+2026-08-20  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* Avanzamento versione 2.0.5-SNAPSHOT
+
+	* [BOM]
+	Correzione
+	Risoluzione segnalazione dependency-check su Logback:
+	- Logback (logback-classic, logback-core): 1.5.38 -> 1.6.3 (override
+	  della versione managed da Spring Boot 4.1.0, che fornisce 1.5.34).
+	  Fix per CVE-2026-19880 (CWE-22, path traversal: un valore MDC usato
+	  come discriminator confluisce non sanificato nel path di un
+	  FileAppender annidato, permettendo a chi controlla quel valore - ad
+	  esempio via header HTTP - di creare file di log fuori dalla directory
+	  prevista). Sono affette tutte le versioni da 0.9.14 a 1.6.2: non
+	  esiste un backport sul ramo 1.5.x, la 1.6.3 e' l'unica versione
+	  corretta. Baseline invariata rispetto alla 1.5.38 (JDK 11,
+	  slf4j 2.0.18).
+
 2026-08-19  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* Rilasciata versione 2.0.4

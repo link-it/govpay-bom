@@ -6,12 +6,12 @@
 
 	<groupId>org.gov4j.govpay</groupId>
 	<artifactId>govpay-bom</artifactId>
-	<version>2.0.4</version>
+	<version>2.0.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>GovPay BOM</name>
 	<description>Parent POM for dependency version management across GovPay projects</description>
-	<url>https://gov4j.org/maven/govpay/govpay-bom/2.0.4</url>
+	<url>https://gov4j.org/maven/govpay/govpay-bom/2.0.5-SNAPSHOT</url>
 
 	<licenses>
 		<license>
@@ -73,7 +73,7 @@
 
         <!-- Logging -->
         <slf4j.version>2.0.18</slf4j.version>
-        <logback.version>1.5.38</logback.version>
+        <logback.version>1.6.3</logback.version> <!-- override Spring Boot (1.5.34) per CVE-2026-19880: affette tutte le versioni da 0.9.14 a 1.6.2, nessun backport sul ramo 1.5.x -->
         <log4j2.version>2.25.5</log4j2.version> <!-- override Spring Boot per CVE-2026-49844: vedi log4j-bom in dependencyManagement -->
 
         <!-- Networking -->
