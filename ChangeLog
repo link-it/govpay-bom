@@ -1,3 +1,29 @@
+2026-08-21  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Correzione
+	Risoluzione segnalazioni dependency-check su GovPay Giornale degli Eventi
+	API:
+	- Tomcat embedded: 11.0.22 -> 11.0.25 (override delle versioni managed da
+	  Spring Boot 4.1.0). Fix per 9 CVE: CVE-2026-53404, CVE-2026-53434,
+	  CVE-2026-50229, CVE-2026-55276, CVE-2026-55955, CVE-2026-55956
+	  (corrette in 11.0.23), CVE-2026-59083, CVE-2026-59084 (11.0.24) e
+	  CVE-2026-66299 (11.0.25). Severita' secondo Apache: 8 Low e 1 Moderate
+	  (CVE-2026-55956, vincoli di sicurezza del default servlet che ignorano
+	  il metodo HTTP). Tomcat non pubblica un BOM, quindi l'override e'
+	  realizzato con entry esplicite in dependencyManagement, che vincono
+	  comunque sui BOM importati. Estese a tutti gli artefatti Tomcat gestiti
+	  da Spring Boot per non lasciarne indietro nessuno.
+	Nota: le due segnalazioni su jackson-databind 2.21.5 (CVE-2026-68497,
+	CVE-2026-19032) non sono azionabili. I due identificativi non esistono in
+	nessun database autoritativo: MITRE risponde CVE_RECORD_DNE, NVD e OSV non
+	li conoscono. Erano gia' comparsi nel report precedente riferiti a
+	jackson-databind 3.2.1, cioe' a un ramo major diverso, il che conferma il
+	falso positivo. Su 2.21.5 OSV non riporta alcuna vulnerabilita'.
+	Nota: HdrHistogram 2.2.2 (CVE-2026-14683, CVE-2026-14686) resta non
+	risolvibile, senza variazioni rispetto alla 2.0.4: nessuna versione con il
+	fix pubblicata.
+
 2026-08-20  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* Avanzamento versione 2.0.5-SNAPSHOT

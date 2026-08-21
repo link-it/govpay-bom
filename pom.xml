@@ -76,6 +76,9 @@
         <logback.version>1.6.3</logback.version> <!-- override Spring Boot (1.5.34) per CVE-2026-19880: affette tutte le versioni da 0.9.14 a 1.6.2, nessun backport sul ramo 1.5.x -->
         <log4j2.version>2.25.5</log4j2.version> <!-- override Spring Boot per CVE-2026-49844: vedi log4j-bom in dependencyManagement -->
 
+        <!-- Servlet Container -->
+        <tomcat.version>11.0.25</tomcat.version> <!-- override Spring Boot (11.0.22) per 9 CVE: vedi entry tomcat-embed in dependencyManagement -->
+
         <!-- Networking -->
         <netty.version>4.2.17.Final</netty.version> <!-- override Spring Boot per CVE: vedi netty-bom in dependencyManagement -->
         <httpclient5.version>5.6.4</httpclient5.version> <!-- override Spring Boot per CVE-2026-64607 (fix 5.6.3) -->
@@ -447,6 +450,51 @@
                 <groupId>org.apache.httpcomponents.core5</groupId>
                 <artifactId>httpcore5-reactive</artifactId>
                 <version>${httpcore5.version}</version>
+            </dependency>
+
+            <!--
+                Tomcat embedded: override delle versioni managed da Spring Boot
+                4.1.0 (11.0.22). Tomcat non pubblica un BOM, quindi servono
+                entry esplicite, che comunque vincono sui BOM importati.
+                Fix per: CVE-2026-53404, CVE-2026-53434, CVE-2026-50229,
+                CVE-2026-55276, CVE-2026-55955, CVE-2026-55956 (11.0.23),
+                CVE-2026-59083, CVE-2026-59084 (11.0.24),
+                CVE-2026-66299 (11.0.25).
+            -->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-websocket</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-jasper</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-annotations-api</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jdbc</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jsp-api</artifactId>
+                <version>${tomcat.version}</version>
             </dependency>
 
             <!-- Jakarta EE -->
