@@ -2,6 +2,39 @@
 
 	* [BOM]
 	Correzione
+	Risoluzione segnalazioni dependency-check su GovPay Console API:
+	- Jackson 2 (com.fasterxml.jackson:jackson-bom): 2.21.5 -> 2.21.6. Fix per
+	  CVE-2026-68497 / GHSA-q4xh-88c3-wmh7 (HIGH, CVSS 7.5: DoS nel parsing di
+	  Duration e XMLGregorianCalendar con numeri di lunghezza non limitata;
+	  ramo 2.x affetto da 2.19.0, corretto in 2.21.6) e per
+	  GHSA-wjgm-6hv5-3cvf (deserializzazione di Path senza allowlist degli
+	  schemi nella risoluzione del FileSystemProvider, affetto fino a 2.21.5).
+	  Il ramo Jackson 3 in uso (3.2.2) non e' affetto da nessuna delle due,
+	  ne' da CVE-2026-77310 / GHSA-vvgp-rfg2-7rr6, tutte gia' corrette in
+	  3.2.2.
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Hibernate ORM: 7.4.5.Final -> 7.4.6.Final
+
+	Nota: CVE-2026-47838 su spring-security-web 7.1.1 non e' applicabile. Il
+	bollettino VMware elenca come affette le versioni 6.5.0-6.5.10, 6.4.x,
+	6.3.x, 5.8.x e 5.7.24 e precedenti; la CVE e' esplicitamente la
+	continuazione di CVE-2026-22747, che aveva gia' corretto lo stesso
+	problema sul ramo 7.0.x. Segnalata per matching CPE troppo largo.
+	Nota: CVE-2026-19032 su jackson-databind non risulta in nessuna fonte
+	consultabile: non e' nel registro CVE (MITRE), non e' nota a NVD ne' a
+	OSV, non compare nel database advisory di GitHub ne' tra le advisory di
+	repository dei progetti FasterXML (jackson-databind, jackson-core,
+	jackson-modules-java8, jackson-annotations). Non e' azionabile finche' non
+	emerge una fonte che ne descriva versioni affette e fix.
+	Nota: HdrHistogram 2.2.2 (CVE-2026-14683, CVE-2026-14686) invariato:
+	2.2.2 resta l'ultima versione pubblicata, nessun fix disponibile.
+
+2026-08-24  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Correzione
 	Risoluzione di 18 segnalazioni reali su Spring Framework, Spring Security
 	e Spring Data JPA, pubblicate da VMware il 2026-08-20:
 	- Spring Boot: 4.1.0 -> 4.1.1
