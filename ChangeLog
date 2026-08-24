@@ -2,6 +2,46 @@
 
 	* [BOM]
 	Correzione
+	Risoluzione di 18 segnalazioni reali su Spring Framework, Spring Security
+	e Spring Data JPA, pubblicate da VMware il 2026-08-20:
+	- Spring Boot: 4.1.0 -> 4.1.1
+	- Spring Framework: 7.0.8 -> 7.0.9. Fix per CVE-2026-47883 (open redirect
+	  in UrlHandlerFilter), CVE-2026-47884 (SSRF/RCE via XsltView),
+	  CVE-2026-47885 (maxPartSize non applicato in PartEventHttpMessageReader),
+	  CVE-2026-47886 (DoS su espressioni SpEL), CVE-2026-47887
+	  (UrlFileNameViewController), CVE-2026-47889 (cookie senza sameSite su
+	  adapter Jetty 12), CVE-2026-47890 e CVE-2026-59313 (corruzione di stream
+	  con Server-Sent Events), CVE-2026-47891 (maxInMemorySize non applicato
+	  con parser Aalto XML), CVE-2026-59281 (escaping HTML nei field error),
+	  CVE-2026-59282 (data binding su property path non fidati),
+	  CVE-2026-59314 (HTTP response splitting via Content-Disposition).
+	- Spring Security: 7.1.0 -> 7.1.1. Fix per CVE-2026-41707 (HIGH, cache
+	  dei claim jti in DPoPProofJwtDecoderFactory), CVE-2026-47842
+	  (AesBytesEncryptor con IV nullo, continuazione di CVE-2020-5408),
+	  CVE-2026-59270 (credenziale amministrativa registrata
+	  incondizionatamente da UnboundIdContainer), CVE-2026-59276 (confronto di
+	  valori sensibili con String.equals invece che a tempo costante),
+	  CVE-2026-59277 (InetAddressMatchers).
+	- Spring Data JPA: 4.1.0 -> 4.1.1 (via spring-data-bom 2026.0.0 ->
+	  2026.0.1). Fix per CVE-2026-47834 (bypass della validazione di Sort con
+	  payload da sorgenti non fidate).
+	- Spring Batch: 6.0.4 -> 6.0.5 (allineamento a Spring Boot 4.1.1).
+	Mantenuti gli override di Tomcat (11.0.25: Spring Boot 4.1.1 ferma a
+	11.0.24, che non contiene il fix di CVE-2026-66299) e di Logback (1.6.3:
+	Spring Boot 4.1.1 ferma a 1.5.38, ramo non corretto per CVE-2026-19880).
+	L'override di Micrometer a 1.17.1 e' ora allineato a Spring Boot 4.1.1 ed
+	e' mantenuto per esplicitezza.
+
+	Nota: CVE-2026-47838 (Spring Security, impersonificazione via certificati
+	client X.509 malformati) NON riguarda la 7.1.x: le versioni affette si
+	fermano al ramo 6.5.x. E' segnalata per matching CPE troppo largo.
+	Nota: jackson-databind 2.21.5 (CVE-2026-68497, CVE-2026-19032) e
+	HdrHistogram 2.2.2 (CVE-2026-14683, CVE-2026-14686) invariati.
+
+2026-08-24  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Correzione
 	Risoluzione segnalazioni dependency-check su GovPay Giornale degli Eventi
 	API:
 	- Micrometer (micrometer-bom): 1.17.0 -> 1.17.1 (override della versione
