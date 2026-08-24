@@ -76,6 +76,9 @@
         <logback.version>1.6.3</logback.version> <!-- override Spring Boot (1.5.34) per CVE-2026-19880: affette tutte le versioni da 0.9.14 a 1.6.2, nessun backport sul ramo 1.5.x -->
         <log4j2.version>2.25.5</log4j2.version> <!-- override Spring Boot per CVE-2026-49844: vedi log4j-bom in dependencyManagement -->
 
+        <!-- Observability -->
+        <micrometer.version>1.17.1</micrometer.version> <!-- override Spring Boot (1.17.0) per CVE-2026-59296: vedi micrometer-bom in dependencyManagement -->
+
         <!-- Servlet Container -->
         <tomcat.version>11.0.25</tomcat.version> <!-- override Spring Boot (11.0.22) per 9 CVE: vedi entry tomcat-embed in dependencyManagement -->
 
@@ -185,6 +188,23 @@
                 <groupId>com.fasterxml.jackson</groupId>
                 <artifactId>jackson-bom</artifactId>
                 <version>${jackson2.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--
+                Micrometer BOM: importato PRIMA di spring-boot-dependencies per
+                sovrascrivere la versione managed (vulnerabile) fornita da
+                Spring Boot 4.1.0 (micrometer 1.17.0). Fix per CVE-2026-59296
+                (CVSS 5.9): micrometer-core e micrometer-registry-statsd non
+                sanificano i caratteri di newline in nomi di metrica, chiavi e
+                valori di tag, aprendo a injection sul line protocol e sui log.
+                Prima versione non affetta del ramo 1.17.x: 1.17.0.1 / 1.17.1.
+            -->
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-bom</artifactId>
+                <version>${micrometer.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

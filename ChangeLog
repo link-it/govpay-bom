@@ -1,3 +1,33 @@
+2026-08-24  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Correzione
+	Risoluzione segnalazioni dependency-check su GovPay Giornale degli Eventi
+	API:
+	- Micrometer (micrometer-bom): 1.17.0 -> 1.17.1 (override della versione
+	  managed da Spring Boot 4.1.0). Fix per CVE-2026-59296 (CVSS 5.9 MEDIUM):
+	  micrometer-core e micrometer-registry-statsd non sanificano i caratteri
+	  di newline in nomi di metrica, chiavi e valori di tag, esponendo a
+	  injection sul line protocol e sui log quando l'instrumentazione usa
+	  input non fidato. Prima versione non affetta del ramo 1.17.x: 1.17.0.1
+	  oppure 1.17.1. Override realizzato importando micrometer-bom PRIMA di
+	  spring-boot-dependencies.
+
+	Nota: delle 21 segnalazioni riportate su Spring, Spring Security, Spring
+	Data JPA e Micrometer, 19 non sono azionabili perche' i relativi
+	identificativi non esistono nel registro CVE (MITRE risponde
+	CVE_RECORD_DNE) e non sono noti a NVD ne' a OSV. Nessuna advisory OSV
+	risulta su spring-beans/spring-expression/spring-web/spring-webmvc 7.0.8,
+	spring-security-* 7.1.0, spring-data-jpa 4.1.0 e micrometer-core 1.17.0.
+	Delle due segnalazioni reali, CVE-2026-47838 (Spring Security,
+	impersonificazione via certificati client X.509 malformati) NON riguarda
+	la 7.1.0: le versioni affette secondo il record CVE si fermano al ramo
+	6.5.x. Le versioni Spring restano quindi invariate e sono gia' tutte
+	all'ultima stabile.
+	Nota: jackson-databind 2.21.5 (CVE-2026-68497, CVE-2026-19032) e
+	HdrHistogram 2.2.2 (CVE-2026-14683, CVE-2026-14686) invariati rispetto
+	alle note precedenti.
+
 2026-08-21  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]
