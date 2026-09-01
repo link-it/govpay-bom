@@ -63,7 +63,7 @@
         <spring-batch.version>6.0.5</spring-batch.version>
 
         <!-- Database -->
-        <hibernate.version>7.4.6.Final</hibernate.version>
+        <hibernate.version>7.4.7.Final</hibernate.version>
         <hikaricp.version>7.1.0</hikaricp.version>
         <postgresql.version>42.7.13</postgresql.version>
         <mysql.version>26.7.0</mysql.version> <!-- override Spring Boot per CVE-2026-60586/60623/60624/61082 (Oracle CPU: affette 9.7.0-9.7.1) -->
@@ -125,7 +125,7 @@
         <openapi.tool.codegen.version>7.23.0</openapi.tool.codegen.version>
         <jackson-databind-nullable.version>0.2.11</jackson-databind-nullable.version>
         <swagger-v1.version>1.6.2</swagger-v1.version>
-        <swagger-v3.version>2.2.54</swagger-v3.version>
+        <swagger-v3.version>2.2.55</swagger-v3.version>
 
         <!-- JaCoCo -->
         <jacoco.version>0.8.14</jacoco.version>

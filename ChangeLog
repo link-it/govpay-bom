@@ -1,3 +1,20 @@
+2026-09-01  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Hibernate ORM: 7.4.6.Final -> 7.4.7.Final
+	- Swagger v3 (swagger-annotations): 2.2.54 -> 2.2.55
+
+	Nota: verifica di sicurezza contestuale senza interventi necessari.
+	La scansione OSV sui 1891 artefatti del dependencyManagement effettivo non
+	rileva nulla di nuovo, e non risultano CVE Spring pubblicate dopo il
+	2026-08-24. L'advisory CVE-2026-83557 / GHSA-gx83-3vf8-gh7j su
+	jackson-databind, pubblicata oggi (MEDIUM, CVSS 5.6: denylist incompleta
+	di DefaultBaseTypeLimitingValidator, con Comparable mancante tra gli
+	unsafe base types del PolymorphicTypeValidator), indica come corrette
+	2.21.6 per il ramo 2.x e 3.2.2 per il 3.x: entrambe gia' in uso, quindi
+	nessuna azione richiesta.
+
 2026-08-24  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]
