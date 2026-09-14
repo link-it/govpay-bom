@@ -1,3 +1,28 @@
+2026-09-14  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Packaging degli script SQL per le immagini Docker dei batch.
+	Aggiunto il profilo "dist", non attivo di default, e la configurazione dei due
+	plugin che lo compongono nella pluginManagement: maven-dependency-plugin estrae
+	da spring-batch-core, verbatim, gli schema-<vendor>.sql e l'albero migration/**,
+	maven-assembly-plugin li impacchetta in target/sql.zip insieme agli script delle
+	tabelle applicative del progetto.
+
+	La configurazione e' identica per tutti e sette i batch, che finora l'avrebbero
+	dovuta duplicare: qui la versione degli schemi segue ${spring-batch.version}
+	definita nel bom, quindi aggiornando Spring Batch si aggiorna il DDL di tutti i
+	batch insieme e la deriva fra repository diventa impossibile.
+
+	Il progetto che usa il profilo deve solo fornire il descrittore
+	src/assembly/sql.xml, che elenca cosa finisce nell'archivio, e attivarlo
+	insieme al proprio profilo di packaging: "mvn -Pjar,dist". Maven disattiva i
+	profili activeByDefault non appena si passa -P, e nei batch e' proprio il
+	profilo activeByDefault a portare i driver JDBC in scope provided.
+
+	Aggiunte le proprieta' maven-dependency-plugin.version (3.8.1) e
+	maven-assembly-plugin.version (3.7.1). Senza -Pdist nulla di tutto questo
+	viene eseguito: la pluginManagement da sola non attiva alcun plugin.
+
 2026-09-01  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]

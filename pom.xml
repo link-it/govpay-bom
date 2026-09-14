@@ -155,6 +155,8 @@
         <maven-clean-plugin.version>3.4.0</maven-clean-plugin.version>
         <maven-install-plugin.version>3.1.3</maven-install-plugin.version>
         <maven-deploy-plugin.version>3.1.3</maven-deploy-plugin.version>
+        <maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
+        <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
         <spring-boot-maven-plugin.version>${spring-boot.version}</spring-boot-maven-plugin.version>
     </properties>
 
@@ -754,6 +756,73 @@
                     <version>${spring-boot-maven-plugin.version}</version>
                 </plugin>
 
+                <!--
+                    Packaging degli script SQL per le immagini Docker dei batch
+                    (profilo "dist", vedi sotto).
+
+                    Gli schemi dei metadati Spring Batch non sono mantenuti nei
+                    repository dei batch: vengono estratti in fase di packaging
+                    da spring-batch-core, verbatim, cosi' seguono automaticamente
+                    la ${spring-batch.version} definita qui e non possono piu'
+                    divergere da un batch all'altro.
+
+                    La configurazione sta qui perche' e' identica per tutti i
+                    batch; il progetto che la usa deve solo fornire il descrittore
+                    src/assembly/sql.xml e attivare il profilo "dist".
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven-dependency-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>unpack-spring-batch-schema</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>unpack</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <groupId>org.springframework.batch</groupId>
+                                        <artifactId>spring-batch-core</artifactId>
+                                        <version>${spring-batch.version}</version>
+                                        <type>jar</type>
+                                        <includes>org/springframework/batch/core/schema-*.sql,org/springframework/batch/core/migration/**</includes>
+                                        <outputDirectory>${project.build.directory}/sql-upstream</outputDirectory>
+                                    </artifactItem>
+                                </artifactItems>
+                                <!-- spring-batch-core e' una SNAPSHOT solo in sviluppo, ma il
+                                     default del plugin non riestrae gli snapshot gia' scompattati -->
+                                <overWriteSnapshots>true</overWriteSnapshots>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>sql-zip</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                            <configuration>
+                                <descriptors>
+                                    <descriptor>src/assembly/sql.xml</descriptor>
+                                </descriptors>
+                                <finalName>sql</finalName>
+                                <appendAssemblyId>false</appendAssemblyId>
+                                <attach>false</attach>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
                 <!-- JAXB2 Maven Plugin -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -863,6 +932,37 @@
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!--
+            Packaging degli script SQL per le immagini Docker dei batch.
+            Produce target/sql.zip con gli schemi Spring Batch estratti da
+            spring-batch-core piu' gli script delle tabelle applicative del
+            progetto. Non e' attivo di default: serve solo a chi costruisce
+            un'immagine (pipeline docker-dev / release, docker/build_image.sh).
+
+            Il progetto che lo usa deve avere src/assembly/sql.xml; tutta la
+            configurazione dei due plugin sta nella pluginManagement qui sopra.
+
+            Va attivato SEMPRE insieme al profilo di packaging del progetto,
+            per esempio "mvn -Pjar,dist": Maven disattiva i profili
+            activeByDefault non appena si passa -P, e nei batch e' proprio il
+            profilo activeByDefault a portare i driver JDBC in scope provided.
+        -->
+        <profile>
+            <id>dist</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
                     </plugin>
                 </plugins>
             </build>
