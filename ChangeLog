@@ -1,3 +1,17 @@
+2026-09-17  Giuliano Pintori <pintori@link.it>
+
+	* [BOM]
+	Il profilo "dist" estrae ora anche gli script di svecchiamento dei metadati
+	Spring Batch da govpay-common, oltre agli schemi da spring-batch-core, e li
+	mette a disposizione dell'assembly dei batch in target/sql-govpay-common.
+
+	La versione e' governata dalla nuova proprieta' govpay-common.sql.version,
+	volutamente distinta da govpay-common.version: quest'ultima e' la dipendenza
+	di codice del singolo batch, e alcuni batch sono fermi a versioni piu'
+	vecchie (notify 2.0.3-SNAPSHOT, tracciati 2.0.1-SNAPSHOT) che non
+	conterrebbero gli script. Gli script agiscono solo sulle tabelle BATCH_*,
+	identiche in ogni versione, quindi svincolarli dalla dipendenza di codice li
+	fa arrivare a tutti i batch senza obbligare nessuno ad aggiornare.
 2026-09-14  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]
