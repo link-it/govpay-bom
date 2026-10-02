@@ -65,8 +65,8 @@ jobs:
           mvn -B dependency-check:check \
             -DdataDirectory=.dependency-check/data \
             -DnvdApiKey=$NVD_API_KEY \
-            -DossindexAnalyzerUsername=$OSS_INDEX_USER \
-            -DossindexAnalyzerPassword=$OSS_INDEX_PASSWORD \
+            -DossIndexUsername=$OSS_INDEX_USER \
+            -DossIndexPassword=$OSS_INDEX_PASSWORD \
             $NOUPDATE_FLAG
 
       - name: Upload Dependency Check Report

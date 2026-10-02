@@ -63,36 +63,36 @@
         <spring-batch.version>6.0.5</spring-batch.version>
 
         <!-- Database -->
-        <hibernate.version>7.4.7.Final</hibernate.version>
+        <hibernate.version>7.4.11.Final</hibernate.version>
         <hikaricp.version>7.1.0</hikaricp.version>
         <postgresql.version>42.7.13</postgresql.version>
         <mysql.version>26.7.0</mysql.version> <!-- override Spring Boot per CVE-2026-60586/60623/60624/61082 (Oracle CPU: affette 9.7.0-9.7.1) -->
         <oracle.version>23.26.3.0.0</oracle.version>
-        <mssql.version>13.4.0.jre11</mssql.version>
-        <h2.version>2.4.240</h2.version>
+        <mssql.version>13.6.0.jre11</mssql.version>
+        <h2.version>2.5.252</h2.version>
 
         <!-- Logging -->
-        <slf4j.version>2.0.18</slf4j.version>
-        <logback.version>1.6.3</logback.version> <!-- override Spring Boot (4.1.1 fornisce 1.5.38) per CVE-2026-19880: affette tutte le versioni da 0.9.14 a 1.6.2, nessun backport sul ramo 1.5.x -->
-        <log4j2.version>2.25.5</log4j2.version> <!-- override Spring Boot per CVE-2026-49844: vedi log4j-bom in dependencyManagement -->
+        <slf4j.version>2.0.20</slf4j.version>
+        <logback.version>1.6.5</logback.version> <!-- override Spring Boot (4.1.1 fornisce 1.5.38) per CVE-2026-19880: affette tutte le versioni da 0.9.14 a 1.6.2, nessun backport sul ramo 1.5.x -->
+        <log4j2.version>2.26.1</log4j2.version> <!-- override Spring Boot per CVE-2026-49844: vedi log4j-bom in dependencyManagement -->
 
         <!-- Observability -->
         <micrometer.version>1.17.1</micrometer.version> <!-- override Spring Boot (1.17.0) per CVE-2026-59296: vedi micrometer-bom in dependencyManagement -->
 
         <!-- Servlet Container -->
-        <tomcat.version>11.0.25</tomcat.version> <!-- override Spring Boot (4.1.1 fornisce 11.0.24) per 9 CVE, incl. CVE-2026-66299 corretta solo in 11.0.25: vedi entry tomcat-embed in dependencyManagement -->
+        <tomcat.version>11.0.26</tomcat.version> <!-- override Spring Boot (4.1.1 fornisce 11.0.24) per 9 CVE, incl. CVE-2026-66299 corretta solo in 11.0.25: vedi entry tomcat-embed in dependencyManagement -->
 
         <!-- Networking -->
-        <netty.version>4.2.17.Final</netty.version> <!-- override Spring Boot per CVE: vedi netty-bom in dependencyManagement -->
+        <netty.version>4.2.18.Final</netty.version> <!-- override Spring Boot per CVE: vedi netty-bom in dependencyManagement -->
         <httpclient5.version>5.6.4</httpclient5.version> <!-- override Spring Boot per CVE-2026-64607 (fix 5.6.3) -->
-        <httpcore5.version>5.4.3</httpcore5.version> <!-- override Spring Boot per CVE-2026-54399 e CVE-2026-54428 -->
+        <httpcore5.version>5.4.4</httpcore5.version> <!-- override Spring Boot per CVE-2026-54399 e CVE-2026-54428 -->
 
         <!-- JSON/XML -->
         <jackson.version>3.2.2</jackson.version>
-        <jackson2.version>2.21.6</jackson2.version> <!-- override Spring Boot (2.21.5) per il ramo Jackson 2 residuo: vedi jackson-bom 2.x in dependencyManagement -->
+        <jackson2.version>2.22.3</jackson2.version> <!-- override Spring Boot (2.21.5) per il ramo Jackson 2 residuo: vedi jackson-bom 2.x in dependencyManagement -->
         <jakarta-xml-bind.version>4.0.5</jakarta-xml-bind.version>
         <jaxb-runtime.version>4.0.9</jaxb-runtime.version>
-        <jaxb2-maven-plugin.version>4.1.0</jaxb2-maven-plugin.version>
+        <jaxb2-maven-plugin.version>4.2.0</jaxb2-maven-plugin.version>
 
         <!-- Jakarta EE -->
         <jakarta-servlet.version>6.1.0</jakarta-servlet.version>
@@ -101,41 +101,41 @@
         <jakarta-annotation.version>3.0.0</jakarta-annotation.version>
 
         <!-- Utilities -->
-        <commons-lang3.version>3.20.0</commons-lang3.version>
+        <commons-lang3.version>3.21.0</commons-lang3.version>
         <commons-io.version>2.22.0</commons-io.version>
         <commons-codec.version>1.22.1</commons-codec.version>
         <commons-csv.version>1.14.1</commons-csv.version>
-        <guava.version>33.7.1-jre</guava.version>
-        <lombok.version>1.18.46</lombok.version>
+        <guava.version>33.7.2-jre</guava.version>
+        <lombok.version>1.18.48</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
 
         <!-- Testing -->
-        <junit-jupiter.version>6.0.3</junit-jupiter.version> <!-- versione effettiva da Spring Boot BOM (first-declared-wins); update a 6.1.0 richiederebbe import del junit-bom prima di spring-boot-dependencies -->
-        <mockito.version>5.23.0</mockito.version>
+        <junit-jupiter.version>6.1.3</junit-jupiter.version> <!-- override Spring Boot (4.1.1 fornisce 6.0.3): junit-bom importato prima di spring-boot-dependencies -->
+        <mockito.version>5.24.0</mockito.version>
         <assertj.version>3.27.7</assertj.version>
         <testcontainers.version>2.0.5</testcontainers.version>
 
         <!-- API Documentation -->
-        <springdoc-openapi.version>3.1.0</springdoc-openapi.version>
+        <springdoc-openapi.version>3.1.1</springdoc-openapi.version>
         <!-- Override swagger-ui (springdoc 3.1.0 lo tira transitivamente a 5.32.11):
              da 5.32.6 include DOMPurify 3.4.0 e risolve CVE-2026-41238/41239/41240 -->
-        <swagger-ui.version>5.32.14</swagger-ui.version>
+        <swagger-ui.version>5.32.15</swagger-ui.version>
 
         <!-- OpenAPI Generator -->
-        <openapi.tool.codegen.version>7.23.0</openapi.tool.codegen.version>
-        <jackson-databind-nullable.version>0.2.11</jackson-databind-nullable.version>
-        <swagger-v1.version>1.6.2</swagger-v1.version>
+        <openapi.tool.codegen.version>7.25.0</openapi.tool.codegen.version>
+        <jackson-databind-nullable.version>0.2.12</jackson-databind-nullable.version>
+        <swagger-v1.version>1.6.16</swagger-v1.version>
         <swagger-v3.version>2.2.55</swagger-v3.version>
 
         <!-- JaCoCo -->
-        <jacoco.version>0.8.14</jacoco.version>
+        <jacoco.version>0.8.15</jacoco.version>
 
         <!-- Publishing -->
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
         <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
 
         <!-- OWASP Dependency Check -->
-        <owasp.plugin.version>12.2.2</owasp.plugin.version>
+        <owasp.plugin.version>13.0.0</owasp.plugin.version>
         <owasp.phase>verify</owasp.phase>
         <owasp.autoUpdate>false</owasp.autoUpdate> <!-- WORKAROUND: disabilitato per bug NVD timestamp parsing (DependencyCheck #8424) -->
         <owasp.failBuildOnCVSS>11</owasp.failBuildOnCVSS>
@@ -144,17 +144,17 @@
         <owasp.nvdApiDelay>4000</owasp.nvdApiDelay> <!-- delay (ms) tra richieste API NVD -->
 
         <!-- Maven Plugins -->
-        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>3.5.5</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.5.5</maven-failsafe-plugin.version>
-        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+        <maven-compiler-plugin.version>3.16.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.6.0</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.6.0</maven-failsafe-plugin.version>
+        <maven-jar-plugin.version>3.5.1</maven-jar-plugin.version>
         <maven-war-plugin.version>3.5.1</maven-war-plugin.version>
-        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
-        <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
-        <maven-clean-plugin.version>3.4.0</maven-clean-plugin.version>
-        <maven-install-plugin.version>3.1.3</maven-install-plugin.version>
-        <maven-deploy-plugin.version>3.1.3</maven-deploy-plugin.version>
+        <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
+        <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
+        <maven-install-plugin.version>3.2.0</maven-install-plugin.version>
+        <maven-deploy-plugin.version>3.2.0</maven-deploy-plugin.version>
         <!-- Versione di govpay-common da cui il profilo dist estrae gli script di
              svecchiamento dei metadati Spring Batch. Volutamente distinta da
              govpay-common.version, che e' la dipendenza di codice del singolo
@@ -162,8 +162,8 @@
              in ogni versione, e devono arrivare a tutti i batch anche a quelli
              fermi a una govpay-common piu' vecchia. -->
         <govpay-common.sql.version>2.0.4-SNAPSHOT</govpay-common.sql.version>
-        <maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
-        <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
+        <maven-dependency-plugin.version>3.11.0</maven-dependency-plugin.version>
+        <maven-assembly-plugin.version>3.8.0</maven-assembly-plugin.version>
         <spring-boot-maven-plugin.version>${spring-boot.version}</spring-boot-maven-plugin.version>
     </properties>
 
@@ -257,6 +257,20 @@
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-bom</artifactId>
                 <version>${log4j2.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--
+                JUnit BOM: importato PRIMA di spring-boot-dependencies per
+                sovrascrivere la versione managed fornita da Spring Boot 4.1.1
+                (junit 6.0.3). Con l'import in coda la property
+                ${junit-jupiter.version} non aveva effetto (first-declared-wins).
+            -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit-jupiter.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -362,15 +376,6 @@
                 <groupId>tools.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>${jackson.version}</version>
-            </dependency>
-
-            <!-- JUnit BOM -->
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>${junit-jupiter.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
 
             <!-- Testcontainers BOM -->

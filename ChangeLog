@@ -1,3 +1,55 @@
+2026-10-02  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Hibernate ORM: 7.4.7.Final -> 7.4.11.Final
+	- Tomcat: 11.0.25 -> 11.0.26
+	- Netty: 4.2.17.Final -> 4.2.18.Final
+	- Logback: 1.6.3 -> 1.6.5
+	- SLF4J: 2.0.18 -> 2.0.20
+	- Log4j 2: 2.25.5 -> 2.26.1
+	- Apache HttpCore 5: 5.4.3 -> 5.4.4
+	- Jackson 2 (com.fasterxml.jackson:jackson-bom): 2.21.6 -> 2.22.3
+	- Microsoft SQL Server JDBC: 13.4.0.jre11 -> 13.6.0.jre11
+	- H2: 2.4.240 -> 2.5.252
+	- Apache Commons Lang 3: 3.20.0 -> 3.21.0
+	- Google Guava: 33.7.1-jre -> 33.7.2-jre
+	- Lombok: 1.18.46 -> 1.18.48
+	- springdoc-openapi: 3.1.0 -> 3.1.1
+	- Swagger UI: 5.32.14 -> 5.32.15
+	- Swagger v1 (swagger-annotations): 1.6.2 -> 1.6.16
+	- jackson-databind-nullable: 0.2.11 -> 0.2.12
+	- OpenAPI Generator: 7.23.0 -> 7.25.0
+	- Mockito: 5.23.0 -> 5.24.0
+	- JUnit: 6.0.3 -> 6.1.3. Il junit-bom e' ora importato prima di
+	  spring-boot-dependencies: in coda la property junit-jupiter.version non
+	  aveva effetto (first-declared-wins) e restava la 6.0.3 di Spring Boot.
+
+	* [Build]
+	Aggiornamento dipendenze
+	- OWASP dependency-check-maven: 12.2.2 -> 13.0.0. La major riguarda solo
+	  il requisito minimo, che passa a Maven 3.8.1; la configurazione in uso
+	  resta compatibile.
+	- JaCoCo: 0.8.14 -> 0.8.15
+	- maven-compiler-plugin: 3.13.0 -> 3.16.0
+	- maven-surefire-plugin: 3.5.5 -> 3.6.0
+	- maven-failsafe-plugin: 3.5.5 -> 3.6.0
+	- maven-jar-plugin: 3.4.2 -> 3.5.1
+	- maven-resources-plugin: 3.3.1 -> 3.5.0
+	- maven-source-plugin: 3.3.1 -> 3.4.0
+	- maven-clean-plugin: 3.4.0 -> 3.5.0
+	- maven-install-plugin: 3.1.3 -> 3.2.0
+	- maven-deploy-plugin: 3.1.3 -> 3.2.0
+	- maven-dependency-plugin: 3.8.1 -> 3.11.0
+	- maven-assembly-plugin: 3.7.1 -> 3.8.0
+	- jaxb2-maven-plugin: 4.1.0 -> 4.2.0
+	Correzione
+	Workflow publish: le credenziali OSS Index erano passate come
+	-DossindexAnalyzerUsername/-DossindexAnalyzerPassword, property che
+	dependency-check-maven non legge (ne' nella 12.2.2 ne' nella 13.0.0) e che
+	quindi venivano ignorate. Ora sono passate come -DossIndexUsername e
+	-DossIndexPassword.
+
 2026-09-17  Giuliano Pintori <pintori@link.it>
 
 	* [BOM]
