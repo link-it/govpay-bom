@@ -1,3 +1,21 @@
+2026-10-12  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Hibernate ORM: 7.4.11.Final -> 7.4.13.Final
+	- Tomcat: 11.0.26 -> 11.0.27
+	- Netty: 4.2.18.Final -> 4.2.19.Final
+	- Apache HttpClient 5: 5.6.4 -> 5.6.5
+	- PostgreSQL JDBC: 42.7.13 -> 42.7.14
+	- Apache Commons Codec: 1.22.1 -> 1.23.0
+	- Swagger UI: 5.32.15 -> 5.33.2 (include DOMPurify 3.4.16)
+	- OpenAPI Generator: 7.25.0 -> 7.26.0. Verificato con la build completa
+	  di govpay-console-api (generatori spring e java/resttemplate con
+	  useJackson3): 1398 test, nessun errore.
+
+	Nota: nessuna delle versioni sostituite ha vulnerabilita' note su OSV;
+	aggiornamenti di manutenzione.
+
 2026-10-02  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]

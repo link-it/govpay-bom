@@ -63,9 +63,9 @@
         <spring-batch.version>6.0.5</spring-batch.version>
 
         <!-- Database -->
-        <hibernate.version>7.4.11.Final</hibernate.version>
+        <hibernate.version>7.4.13.Final</hibernate.version>
         <hikaricp.version>7.1.0</hikaricp.version>
-        <postgresql.version>42.7.13</postgresql.version>
+        <postgresql.version>42.7.14</postgresql.version>
         <mysql.version>26.7.0</mysql.version> <!-- override Spring Boot per CVE-2026-60586/60623/60624/61082 (Oracle CPU: affette 9.7.0-9.7.1) -->
         <oracle.version>23.26.3.0.0</oracle.version>
         <mssql.version>13.6.0.jre11</mssql.version>
@@ -80,11 +80,11 @@
         <micrometer.version>1.17.1</micrometer.version> <!-- override Spring Boot (1.17.0) per CVE-2026-59296: vedi micrometer-bom in dependencyManagement -->
 
         <!-- Servlet Container -->
-        <tomcat.version>11.0.26</tomcat.version> <!-- override Spring Boot (4.1.1 fornisce 11.0.24) per 9 CVE, incl. CVE-2026-66299 corretta solo in 11.0.25: vedi entry tomcat-embed in dependencyManagement -->
+        <tomcat.version>11.0.27</tomcat.version> <!-- override Spring Boot (4.1.1 fornisce 11.0.24) per 9 CVE, incl. CVE-2026-66299 corretta solo in 11.0.25: vedi entry tomcat-embed in dependencyManagement -->
 
         <!-- Networking -->
-        <netty.version>4.2.18.Final</netty.version> <!-- override Spring Boot per CVE: vedi netty-bom in dependencyManagement -->
-        <httpclient5.version>5.6.4</httpclient5.version> <!-- override Spring Boot per CVE-2026-64607 (fix 5.6.3) -->
+        <netty.version>4.2.19.Final</netty.version> <!-- override Spring Boot per CVE: vedi netty-bom in dependencyManagement -->
+        <httpclient5.version>5.6.5</httpclient5.version> <!-- override Spring Boot per CVE-2026-64607 (fix 5.6.3) -->
         <httpcore5.version>5.4.4</httpcore5.version> <!-- override Spring Boot per CVE-2026-54399 e CVE-2026-54428 -->
 
         <!-- JSON/XML -->
@@ -103,7 +103,7 @@
         <!-- Utilities -->
         <commons-lang3.version>3.21.0</commons-lang3.version>
         <commons-io.version>2.22.0</commons-io.version>
-        <commons-codec.version>1.22.1</commons-codec.version>
+        <commons-codec.version>1.23.0</commons-codec.version>
         <commons-csv.version>1.14.1</commons-csv.version>
         <guava.version>33.7.2-jre</guava.version>
         <lombok.version>1.18.48</lombok.version>
@@ -117,12 +117,13 @@
 
         <!-- API Documentation -->
         <springdoc-openapi.version>3.1.1</springdoc-openapi.version>
-        <!-- Override swagger-ui (springdoc 3.1.0 lo tira transitivamente a 5.32.11):
-             da 5.32.6 include DOMPurify 3.4.0 e risolve CVE-2026-41238/41239/41240 -->
-        <swagger-ui.version>5.32.15</swagger-ui.version>
+        <!-- Override swagger-ui (springdoc 3.1.1 lo tira transitivamente a 5.32.14):
+             da 5.32.6 include DOMPurify 3.4.0 e risolve CVE-2026-41238/41239/41240;
+             5.33.2 porta DOMPurify a 3.4.16 -->
+        <swagger-ui.version>5.33.2</swagger-ui.version>
 
         <!-- OpenAPI Generator -->
-        <openapi.tool.codegen.version>7.25.0</openapi.tool.codegen.version>
+        <openapi.tool.codegen.version>7.26.0</openapi.tool.codegen.version>
         <jackson-databind-nullable.version>0.2.12</jackson-databind-nullable.version>
         <swagger-v1.version>1.6.16</swagger-v1.version>
         <swagger-v3.version>2.2.55</swagger-v3.version>
