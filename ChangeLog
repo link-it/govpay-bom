@@ -1,3 +1,16 @@
+2026-10-13  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Jackson 3: 3.2.2 -> 3.2.3. Risolve GHSA-7hhh-6rmp-j9qf (jackson-core),
+	  GHSA-cxp5-3px4-pw24 e GHSA-wv8q-qhhj-9h54 (jackson-databind),
+	  CVSS 7.5, segnalate da osv-scanner.
+
+	Rimozione dipendenze
+	- jackson-datatype-jsr310 (tools.jackson.datatype): in Jackson 3 il
+	  supporto java.time e' incluso in jackson-databind e il modulo non e'
+	  pubblicato per le versioni 3.x (solo 3.0.0-rc1/rc2).
+
 2026-10-12  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]
