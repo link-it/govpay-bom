@@ -1,3 +1,11 @@
+2026-10-14  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- FreeMarker: 2.3.34 -> 2.3.35 (override della versione di Spring Boot).
+	  Risolve CVE-2026-84939 / GHSA-27j2-h3m2-8237 (path traversal nel
+	  caricamento dei template, CVSS 9.1).
+
 2026-10-13  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]
