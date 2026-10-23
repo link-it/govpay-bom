@@ -1,3 +1,30 @@
+2026-10-23  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Aggiornamento dipendenze
+	- Spring Boot: 4.1.1 -> 4.1.2
+	- Spring Framework: 7.0.9 -> 7.0.10
+	- Spring Security: 7.1.1 -> 7.1.2
+	- Spring Data: 2026.0.1 -> 2026.0.2
+	- Spring Batch: 6.0.5 -> 6.0.6
+	- Micrometer: 1.17.1 -> 1.17.2
+	- Jackson 3: 3.2.3 -> 3.2.4
+	- Jackson 2: 2.22.3 -> 2.22.4
+	- MySQL Connector/J: 26.7.0 -> 26.10.0
+	- Microsoft SQL Server JDBC: 13.6.0.jre11 -> 13.6.1.jre11
+	- Swagger UI: 5.33.2 -> 5.34.0
+
+	Rimozione override
+	- Tomcat, Netty, FreeMarker e Micrometer: Spring Boot 4.1.2 fornisce
+	  gia' le versioni corrette (Tomcat 11.0.27, Netty 4.2.19.Final,
+	  FreeMarker 2.3.35, Micrometer 1.17.2); rimosse le proprieta'
+	  tomcat.version, netty.version, freemarker.version, micrometer.version
+	  e le relative entry/import in dependencyManagement.
+
+	* [Build]
+	Aggiornamento dipendenze
+	- central-publishing-maven-plugin: 0.11.0 -> 0.12.0
+
 2026-10-14  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]
