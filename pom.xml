@@ -63,7 +63,7 @@
         <spring-batch.version>6.0.6</spring-batch.version>
 
         <!-- Database -->
-        <hibernate.version>7.4.13.Final</hibernate.version>
+        <hibernate.version>7.4.14.Final</hibernate.version>
         <hikaricp.version>7.1.0</hikaricp.version>
         <postgresql.version>42.7.14</postgresql.version>
         <mysql.version>26.10.0</mysql.version> <!-- override Spring Boot per CVE-2026-60586/60623/60624/61082 (Oracle CPU: affette 9.7.0-9.7.1) -->
@@ -73,7 +73,7 @@
 
         <!-- Logging -->
         <slf4j.version>2.0.20</slf4j.version>
-        <logback.version>1.6.5</logback.version> <!-- override Spring Boot (4.1.1 fornisce 1.5.38) per CVE-2026-19880: affette tutte le versioni da 0.9.14 a 1.6.2, nessun backport sul ramo 1.5.x -->
+        <logback.version>1.6.6</logback.version> <!-- override Spring Boot (4.1.1 fornisce 1.5.38) per CVE-2026-19880: affette tutte le versioni da 0.9.14 a 1.6.2, nessun backport sul ramo 1.5.x -->
         <log4j2.version>2.26.1</log4j2.version> <!-- override Spring Boot per CVE-2026-49844: vedi log4j-bom in dependencyManagement -->
 
         <!-- Networking -->
@@ -109,7 +109,7 @@
         <testcontainers.version>2.0.5</testcontainers.version>
 
         <!-- API Documentation -->
-        <springdoc-openapi.version>3.1.1</springdoc-openapi.version>
+        <springdoc-openapi.version>3.2.0</springdoc-openapi.version>
         <!-- Override swagger-ui (springdoc 3.1.1 lo tira transitivamente a 5.32.14):
              da 5.32.6 include DOMPurify 3.4.0 e risolve CVE-2026-41238/41239/41240;
              5.33.2 porta DOMPurify a 3.4.16 -->
@@ -117,12 +117,12 @@
 
         <!-- OpenAPI Generator -->
         <openapi.tool.codegen.version>7.26.0</openapi.tool.codegen.version>
-        <jackson-databind-nullable.version>0.2.12</jackson-databind-nullable.version>
+        <jackson-databind-nullable.version>0.2.13</jackson-databind-nullable.version>
         <swagger-v1.version>1.6.16</swagger-v1.version>
         <swagger-v3.version>2.2.55</swagger-v3.version>
 
         <!-- JaCoCo -->
-        <jacoco.version>0.8.15</jacoco.version>
+        <jacoco.version>0.8.16</jacoco.version>
 
         <!-- Publishing -->
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
@@ -139,8 +139,8 @@
 
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.16.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>3.6.0</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.6.0</maven-failsafe-plugin.version>
+        <maven-surefire-plugin.version>3.6.1</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.6.1</maven-failsafe-plugin.version>
         <maven-jar-plugin.version>3.5.1</maven-jar-plugin.version>
         <maven-war-plugin.version>3.5.1</maven-war-plugin.version>
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
@@ -149,6 +149,8 @@
         <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
         <maven-install-plugin.version>3.2.0</maven-install-plugin.version>
         <maven-deploy-plugin.version>3.2.0</maven-deploy-plugin.version>
+        <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
+        <maven.min.version>3.8.1</maven.min.version> <!-- minimo richiesto da dependency-check-maven 13.x -->
         <!-- Versione di govpay-common da cui il profilo dist estrae gli script di
              svecchiamento dei metadati Spring Batch. Volutamente distinta da
              govpay-common.version, che e' la dipendenza di codice del singolo
@@ -821,6 +823,31 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <!-- Verifica la versione minima di Maven: con versioni precedenti alcuni
+                 plugin (es. dependency-check-maven) falliscono con errori poco chiari -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven-enforcer-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven-version</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>[${maven.min.version},)</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
     <profiles>
