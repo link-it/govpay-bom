@@ -4,9 +4,12 @@
 	Aggiornamento dipendenze
 	- Hibernate ORM: 7.4.13.Final -> 7.4.14.Final
 	- Logback: 1.6.5 -> 1.6.6
-	- springdoc-openapi: 3.1.1 -> 3.2.0 (usa Swagger UI 5.34.0, allineata
-	  all'override swagger-ui.version)
+	- springdoc-openapi: 3.1.1 -> 3.2.0 (porta Swagger UI 5.34.0)
 	- jackson-databind-nullable: 0.2.12 -> 0.2.13
+
+	Rimozione override
+	- Swagger UI: springdoc-openapi 3.2.0 porta gia' la 5.34.0; rimossa la
+	  proprieta' swagger-ui.version e la relativa entry in dependencyManagement.
 
 	* [Build]
 	Aggiunta funzionalità

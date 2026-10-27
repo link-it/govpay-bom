@@ -110,10 +110,6 @@
 
         <!-- API Documentation -->
         <springdoc-openapi.version>3.2.0</springdoc-openapi.version>
-        <!-- Override swagger-ui (springdoc 3.1.1 lo tira transitivamente a 5.32.14):
-             da 5.32.6 include DOMPurify 3.4.0 e risolve CVE-2026-41238/41239/41240;
-             5.33.2 porta DOMPurify a 3.4.16 -->
-        <swagger-ui.version>5.34.0</swagger-ui.version>
 
         <!-- OpenAPI Generator -->
         <openapi.tool.codegen.version>7.26.0</openapi.tool.codegen.version>
@@ -544,12 +540,6 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
                 <version>${springdoc-openapi.version}</version>
-            </dependency>
-            <!-- Override swagger-ui per CVE DOMPurify (vedi swagger-ui.version) -->
-            <dependency>
-                <groupId>org.webjars</groupId>
-                <artifactId>swagger-ui</artifactId>
-                <version>${swagger-ui.version}</version>
             </dependency>
 
             <!-- OpenAPI Generator -->
