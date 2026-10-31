@@ -82,7 +82,7 @@
 
         <!-- JSON/XML -->
         <jackson.version>3.2.4</jackson.version>
-        <jackson2.version>2.22.4</jackson2.version> <!-- override Spring Boot (2.21.5) per il ramo Jackson 2 residuo: vedi jackson-bom 2.x in dependencyManagement -->
+        <jackson2.version>2.22.4</jackson2.version> <!-- override Spring Boot (4.1.2 fornisce 2.21.7) per il ramo Jackson 2 residuo: vedi jackson-bom 2.x in dependencyManagement -->
         <jakarta-xml-bind.version>4.0.5</jakarta-xml-bind.version>
         <jaxb-runtime.version>4.0.9</jaxb-runtime.version>
         <jaxb2-maven-plugin.version>4.2.0</jaxb2-maven-plugin.version>
@@ -178,9 +178,9 @@
 
             <!--
                 Jackson 2 BOM: GovPay usa Jackson 3, ma il ramo 2.x resta
-                gestito da spring-boot-dependencies (2.21.4, vulnerabile) e
+                gestito da spring-boot-dependencies (4.1.2 fornisce 2.21.7) e
                 puo' arrivare transitivamente. Import PRIMA di
-                spring-boot-dependencies per forzare 2.21.5. Fix per:
+                spring-boot-dependencies per forzare ${jackson2.version}. Fix per:
                 GHSA-q4xh-88c3-wmh7 / CVE-2026-68497 (HIGH, CVSS 7.5: DoS
                 nel parsing di Duration/XMLGregorianCalendar con numeri non
                 limitati; ramo 2.x corretto in 2.21.6),

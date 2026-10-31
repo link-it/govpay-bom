@@ -59,8 +59,12 @@ jobs:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
           OSS_INDEX_USER: ${{ vars.OSS_INDEX_USER }}
           OSS_INDEX_PASSWORD: ${{ secrets.OSS_INDEX_PASSWORD }}
-          # Se la cache è esatta (stessa giornata) skippa l'update NVD
-          NOUPDATE_FLAG: ${{ steps.owasp-cache.outputs.cache-hit == 'true' && '-DautoUpdate=false' || '' }}
+          # Se la cache è esatta (stessa giornata) skippa l'update NVD.
+          # Va usata la proprietà owasp.autoUpdate: il pom fissa
+          # <autoUpdate>${owasp.autoUpdate}</autoUpdate>, quindi -DautoUpdate non ha effetto.
+          # Senza cache esatta vale il default del pom (owasp.autoUpdate=false): il DB
+          # arriva dalla cache aggiornata da refresh-owasp-db.yml.
+          NOUPDATE_FLAG: ${{ steps.owasp-cache.outputs.cache-hit == 'true' && '-Dowasp.autoUpdate=false' || '' }}
         run: |
           mvn -B dependency-check:check \
             -DdataDirectory=.dependency-check/data \
