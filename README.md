@@ -4,7 +4,6 @@
 
 # GovPay - Porta di accesso al sistema pagoPA - BOM
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=link-it_govpay-bom&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=link-it_govpay-bom)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://raw.githubusercontent.com/link-it/govpay-bom/main/LICENSE)
 [![Spring Boot](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2Flink-it%2Fgovpay-bom%2Fmain%2Fpom.xml&query=%2F%2F*%5Blocal-name()%3D'spring-boot.version'%5D&label=Spring%20Boot&color=brightgreen)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://openjdk.org/projects/jdk/21/)
@@ -134,7 +133,6 @@ Valori del pom su `main`. "Override" indica che il BOM fissa una versione divers
 | SLF4J | `slf4j.version` | 2.0.20 | |
 | Logback | `logback.version` | 1.6.6 | Override per CVE-2026-19880 |
 | Log4j 2 | `log4j2.version` | 2.26.1 | Override per CVE-2026-49844 (BOM `log4j-bom`) |
-| Apache HttpClient 5 / HttpCore 5 | `httpclient5.version`, `httpcore5.version` | 5.6.5 / 5.4.4 | |
 | Jackson 3 (`tools.jackson`) | `jackson.version` | 3.2.4 | Override (BOM `jackson-bom` 3) |
 | Jackson 2 (`com.fasterxml.jackson`) | `jackson2.version` | 2.22.4 | Override per le vulnerabilità del ramo 2.x arrivato in modo transitivo |
 | Jakarta XML Bind / JAXB runtime | `jakarta-xml-bind.version`, `jaxb-runtime.version` | 4.0.5 / 4.0.9 | |
@@ -208,8 +206,8 @@ Il BOM non ha proprietà applicative. Le proprietà del pom elencate qui si poss
 | Proprietà | Default | Descrizione |
 |-----------|---------|-------------|
 | `owasp.phase` | `verify` | Fase in cui gira l'esecuzione `check-owasp`. `none` la disattiva |
-| `owasp.autoUpdate` | `false` | Aggiornamento del database NVD durante l'analisi. Disattivato per il bug di parsing delle date NVD ([DependencyCheck #8424](https://github.com/dependency-check/DependencyCheck/issues/8424)): il database si aggiorna a parte (in CI con [refresh-owasp-db.yml](.github/workflows/refresh-owasp-db.yml)) |
-| `owasp.failBuildOnCVSS` | `11` | Punteggio CVSS da cui la build fallisce. Con `11` (fuori scala) non fallisce mai: le vulnerabilità finiscono solo nel report |
+| `owasp.autoUpdate` | `false` | Aggiornamento del database NVD durante l'analisi. Disattivato: il database si aggiorna a parte, in CI con il workflow `refresh-owasp-db.yml` di ogni progetto ([quello del BOM](.github/workflows/refresh-owasp-db.yml)) |
+| `owasp.failBuildOnCVSS` | `11` | Punteggio CVSS da cui la build fallisce. Con `11` (fuori scala) non fallisce mai: le vulnerabilità finiscono solo nel report. È voluto: a bloccare sono OSV scan nella CI e la scansione delle immagini (Trivy/Grype) |
 | `owasp.ossindex.analyzer.enabled` | `true` | Analizzatore Sonatype OSS Index, in aggiunta al database NVD |
 | `owasp.nvdMaxRetryCount` | `30` | Ritentativi sulle richieste all'API NVD |
 | `owasp.nvdApiDelay` | `4000` | Pausa in ms tra due richieste all'API NVD |

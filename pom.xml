@@ -76,10 +76,6 @@
         <logback.version>1.6.6</logback.version> <!-- override Spring Boot (4.1.1 fornisce 1.5.38) per CVE-2026-19880: affette tutte le versioni da 0.9.14 a 1.6.2, nessun backport sul ramo 1.5.x -->
         <log4j2.version>2.26.1</log4j2.version> <!-- override Spring Boot per CVE-2026-49844: vedi log4j-bom in dependencyManagement -->
 
-        <!-- Networking -->
-        <httpclient5.version>5.6.5</httpclient5.version> <!-- override Spring Boot per CVE-2026-64607 (fix 5.6.3) -->
-        <httpcore5.version>5.4.4</httpcore5.version> <!-- override Spring Boot per CVE-2026-54399 e CVE-2026-54428 -->
-
         <!-- JSON/XML -->
         <jackson.version>3.2.4</jackson.version>
         <jackson2.version>2.22.4</jackson2.version> <!-- override Spring Boot (4.1.2 fornisce 2.21.7) per il ramo Jackson 2 residuo: vedi jackson-bom 2.x in dependencyManagement -->
@@ -127,8 +123,8 @@
         <!-- OWASP Dependency Check -->
         <owasp.plugin.version>13.0.0</owasp.plugin.version>
         <owasp.phase>verify</owasp.phase>
-        <owasp.autoUpdate>false</owasp.autoUpdate> <!-- WORKAROUND: disabilitato per bug NVD timestamp parsing (DependencyCheck #8424) -->
-        <owasp.failBuildOnCVSS>11</owasp.failBuildOnCVSS>
+        <owasp.autoUpdate>false</owasp.autoUpdate> <!-- il database NVD lo aggiorna il workflow refresh-owasp-db di ogni progetto; -Dowasp.autoUpdate=true per aggiornarlo nella build -->
+        <owasp.failBuildOnCVSS>11</owasp.failBuildOnCVSS> <!-- 11 e' fuori scala: l'analisi non fa fallire la build e resta un report; il blocco e' affidato a OSV scan e alla scansione delle immagini (Trivy/Grype) -->
         <owasp.ossindex.analyzer.enabled>true</owasp.ossindex.analyzer.enabled> <!-- Abilita/disabilita l'analisi delle vulnerabilità tramite OSS Index, se disabilitata viene usato il database CVE di NIST -->
         <owasp.nvdMaxRetryCount>30</owasp.nvdMaxRetryCount> <!-- numero ritentativi sulle richieste all'API NVD (resilienza a rate-limit/503) -->
         <owasp.nvdApiDelay>4000</owasp.nvdApiDelay> <!-- delay (ms) tra richieste API NVD -->
@@ -403,40 +399,6 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-core</artifactId>
                 <version>${logback.version}</version>
-            </dependency>
-
-            <!--
-                HTTP Client (Apache HttpComponents 5)
-                Override delle versioni managed da Spring Boot 4.1.0
-                (httpclient5 5.6.1, httpcore5 5.4.2) per:
-                CVE-2026-64607 / GHSA-hjcp-jmpx-g3qm (httpclient5, fix 5.6.3),
-                CVE-2026-54399 / GHSA-hf6x-8p5f-cgmf (httpcore5, fix 5.4.3),
-                CVE-2026-54428 / GHSA-v3jc-474w-2wm6 (httpcore5-h2, fix 5.4.3).
-            -->
-            <dependency>
-                <groupId>org.apache.httpcomponents.client5</groupId>
-                <artifactId>httpclient5</artifactId>
-                <version>${httpclient5.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents.client5</groupId>
-                <artifactId>httpclient5-fluent</artifactId>
-                <version>${httpclient5.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents.core5</groupId>
-                <artifactId>httpcore5</artifactId>
-                <version>${httpcore5.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents.core5</groupId>
-                <artifactId>httpcore5-h2</artifactId>
-                <version>${httpcore5.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents.core5</groupId>
-                <artifactId>httpcore5-reactive</artifactId>
-                <version>${httpcore5.version}</version>
             </dependency>
 
             <!-- Jakarta EE -->
