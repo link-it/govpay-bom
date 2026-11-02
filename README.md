@@ -134,7 +134,6 @@ Valori del pom su `main`. "Override" indica che il BOM fissa una versione divers
 | SLF4J | `slf4j.version` | 2.0.20 | |
 | Logback | `logback.version` | 1.6.6 | Override per CVE-2026-19880 |
 | Log4j 2 | `log4j2.version` | 2.26.1 | Override per CVE-2026-49844 (BOM `log4j-bom`) |
-| Apache HttpClient 5 / HttpCore 5 | `httpclient5.version`, `httpcore5.version` | 5.6.5 / 5.4.4 | |
 | Jackson 3 (`tools.jackson`) | `jackson.version` | 3.2.4 | Override (BOM `jackson-bom` 3) |
 | Jackson 2 (`com.fasterxml.jackson`) | `jackson2.version` | 2.22.4 | Override per le vulnerabilità del ramo 2.x arrivato in modo transitivo |
 | Jakarta XML Bind / JAXB runtime | `jakarta-xml-bind.version`, `jaxb-runtime.version` | 4.0.5 / 4.0.9 | |

@@ -1,3 +1,17 @@
+2026-11-02  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Rimozione override
+	- Apache HttpClient 5 / HttpCore 5: Spring Boot 4.1.2 porta gia' le
+	  versioni 5.6.5 e 5.4.4; rimosse le proprieta' httpclient5.version e
+	  httpcore5.version e le relative entry in dependencyManagement.
+
+	* [Build]
+	- owasp.autoUpdate e owasp.failBuildOnCVSS: commenti aggiornati (il
+	  database NVD lo aggiorna refresh-owasp-db; la soglia 11 e' voluta).
+	- publish.yml: rimosso il trigger su master, dove tutti i job venivano
+	  saltati.
+
 2026-10-27  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]
