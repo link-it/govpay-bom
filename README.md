@@ -207,8 +207,8 @@ Il BOM non ha proprietà applicative. Le proprietà del pom elencate qui si poss
 | Proprietà | Default | Descrizione |
 |-----------|---------|-------------|
 | `owasp.phase` | `verify` | Fase in cui gira l'esecuzione `check-owasp`. `none` la disattiva |
-| `owasp.autoUpdate` | `false` | Aggiornamento del database NVD durante l'analisi. Disattivato per il bug di parsing delle date NVD ([DependencyCheck #8424](https://github.com/dependency-check/DependencyCheck/issues/8424)): il database si aggiorna a parte (in CI con [refresh-owasp-db.yml](.github/workflows/refresh-owasp-db.yml)) |
-| `owasp.failBuildOnCVSS` | `11` | Punteggio CVSS da cui la build fallisce. Con `11` (fuori scala) non fallisce mai: le vulnerabilità finiscono solo nel report |
+| `owasp.autoUpdate` | `false` | Aggiornamento del database NVD durante l'analisi. Disattivato: il database si aggiorna a parte, in CI con il workflow `refresh-owasp-db.yml` di ogni progetto ([quello del BOM](.github/workflows/refresh-owasp-db.yml)) |
+| `owasp.failBuildOnCVSS` | `11` | Punteggio CVSS da cui la build fallisce. Con `11` (fuori scala) non fallisce mai: le vulnerabilità finiscono solo nel report. È voluto: a bloccare sono OSV scan nella CI e la scansione delle immagini (Trivy/Grype) |
 | `owasp.ossindex.analyzer.enabled` | `true` | Analizzatore Sonatype OSS Index, in aggiunta al database NVD |
 | `owasp.nvdMaxRetryCount` | `30` | Ritentativi sulle richieste all'API NVD |
 | `owasp.nvdApiDelay` | `4000` | Pausa in ms tra due richieste all'API NVD |

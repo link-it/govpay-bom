@@ -123,8 +123,8 @@
         <!-- OWASP Dependency Check -->
         <owasp.plugin.version>13.0.0</owasp.plugin.version>
         <owasp.phase>verify</owasp.phase>
-        <owasp.autoUpdate>false</owasp.autoUpdate> <!-- WORKAROUND: disabilitato per bug NVD timestamp parsing (DependencyCheck #8424) -->
-        <owasp.failBuildOnCVSS>11</owasp.failBuildOnCVSS>
+        <owasp.autoUpdate>false</owasp.autoUpdate> <!-- il database NVD lo aggiorna il workflow refresh-owasp-db di ogni progetto; -Dowasp.autoUpdate=true per aggiornarlo nella build -->
+        <owasp.failBuildOnCVSS>11</owasp.failBuildOnCVSS> <!-- 11 e' fuori scala: l'analisi non fa fallire la build e resta un report; il blocco e' affidato a OSV scan e alla scansione delle immagini (Trivy/Grype) -->
         <owasp.ossindex.analyzer.enabled>true</owasp.ossindex.analyzer.enabled> <!-- Abilita/disabilita l'analisi delle vulnerabilità tramite OSS Index, se disabilitata viene usato il database CVE di NIST -->
         <owasp.nvdMaxRetryCount>30</owasp.nvdMaxRetryCount> <!-- numero ritentativi sulle richieste all'API NVD (resilienza a rate-limit/503) -->
         <owasp.nvdApiDelay>4000</owasp.nvdApiDelay> <!-- delay (ms) tra richieste API NVD -->
