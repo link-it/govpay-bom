@@ -4,7 +4,6 @@
 
 # GovPay - Porta di accesso al sistema pagoPA - BOM
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=link-it_govpay-bom&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=link-it_govpay-bom)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://raw.githubusercontent.com/link-it/govpay-bom/main/LICENSE)
 [![Spring Boot](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2Flink-it%2Fgovpay-bom%2Fmain%2Fpom.xml&query=%2F%2F*%5Blocal-name()%3D'spring-boot.version'%5D&label=Spring%20Boot&color=brightgreen)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://openjdk.org/projects/jdk/21/)
