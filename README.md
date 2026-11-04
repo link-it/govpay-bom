@@ -17,6 +17,7 @@ Parent POM dei componenti GovPay: fissa in un solo punto le versioni di Java, Sp
 - le **versioni delle dipendenze** (`dependencyManagement`): importa i BOM di Spring Boot, Spring Framework, Spring Security, Spring Data, Jackson 2 e 3, Log4j, JUnit e Testcontainers, e sovrascrive con voci esplicite le librerie per cui serve una versione diversa da quella di Spring Boot (correzioni di sicurezza, driver JDBC). Le dipendenze si dichiarano senza `<version>`;
 - le **versioni e la configurazione dei plugin** (`pluginManagement`): compilatore Java 21 con Lombok e MapStruct, surefire/failsafe, OWASP Dependency-Check con l'esecuzione `check-owasp`, JaCoCo, firma GPG e pubblicazione su Maven Central;
 - un **controllo sempre attivo**: `maven-enforcer-plugin` blocca la build con Maven più vecchio di 3.8.1;
+- il **filtro delle risorse** di `spring-boot-starter-parent`: nei file `application*` di `src/main/resources` i token `@proprietà@` diventano i valori Maven;
 - due **profili**: `release` (sorgenti, javadoc, firma e pubblicazione su Maven Central) e `dist` (pacchetto `target/sql.zip` con gli script SQL per le immagini Docker dei batch).
 
 Il pom è la fonte delle versioni: le tabelle di questo README le riportano per comodità e vanno aggiornate quando si modifica il pom.
@@ -144,6 +145,7 @@ Valori del pom su `main`. "Override" indica che il BOM fissa una versione divers
 | Mockito / AssertJ | `mockito.version`, `assertj.version` | 5.24.0 / 3.27.7 | |
 | Testcontainers | `testcontainers.version` | 2.0.5 | BOM `testcontainers-bom` |
 | springdoc-openapi | `springdoc-openapi.version` | 3.2.0 | `springdoc-openapi-starter-webmvc-ui`, `-webflux-ui` |
+| Swagger UI (`org.webjars:swagger-ui`) | `swagger-ui.version` | 5.34.1 | Override per CVE-2026-116802/116803/116804 di DOMPurify (springdoc: 5.34.0). Il progetto deve impostare `springdoc.swagger-ui.version=@swagger-ui.version@`: vedi [Filtro delle risorse](#filtro-delle-risorse) |
 | OpenAPI Generator | `openapi.tool.codegen.version` | 7.26.0 | Libreria e `openapi-generator-maven-plugin` |
 | jackson-databind-nullable | `jackson-databind-nullable.version` | 0.2.13 | |
 | Swagger Annotations v1 / v3 | `swagger-v1.version`, `swagger-v3.version` | 1.6.16 / 2.2.55 | |
@@ -158,7 +160,8 @@ Tutto il resto (Tomcat, Micrometer, Netty, FreeMarker, ...) arriva dal BOM di Sp
 | `maven-compiler-plugin` | 3.16.0 | `source`/`target` = `${java.version}`, `-parameters`, annotation processor Lombok e MapStruct |
 | `maven-surefire-plugin`, `maven-failsafe-plugin` | 3.6.1 | Solo versione |
 | `maven-jar-plugin`, `maven-war-plugin` | 3.5.1 | Solo versione |
-| `maven-resources-plugin`, `maven-clean-plugin` | 3.5.0 | Solo versione |
+| `maven-resources-plugin` | 3.5.0 | Delimitatore `@` (`resource.delimiter`), niente delimitatori di default, `propertiesEncoding` UTF-8, come `spring-boot-starter-parent`: vedi [Filtro delle risorse](#filtro-delle-risorse) |
+| `maven-clean-plugin` | 3.5.0 | Solo versione |
 | `maven-install-plugin`, `maven-deploy-plugin` | 3.2.0 | Solo versione |
 | `maven-source-plugin`, `maven-javadoc-plugin` | 3.4.0, 3.12.0 | Solo versione; esecuzioni nel profilo `release` |
 | `spring-boot-maven-plugin` | `${spring-boot.version}` | Solo versione |
@@ -183,6 +186,20 @@ Per attivare l'analisi OWASP basta:
 ```
 
 Il progetto può aggiungere configurazione propria (per esempio `suppressionFiles`), ma **non deve dichiarare una seconda esecuzione** dell'analisi: `check-owasp` è già ereditata e un'esecuzione con un altro id la farebbe girare due volte.
+
+### Filtro delle risorse
+
+Come `spring-boot-starter-parent`, il BOM filtra i file `application*.properties`, `application*.yml` e `application*.yaml` di `src/main/resources`, e copia gli altri file senza modificarli. Il delimitatore è `@`: un token `@nome@` diventa il valore della proprietà Maven `nome`, mentre i placeholder `${...}` restano a Spring.
+
+Serve per leggere nella configurazione Spring le versioni del BOM. Per esempio springdoc usa la propria `springdoc.swagger-ui.version`, che springdoc 3.2.0 fissa a 5.34.0, per costruire il percorso del webjar. Con l'override di `swagger-ui.version`, un progetto con springdoc deve quindi avere in `application.properties`:
+
+```properties
+springdoc.swagger-ui.version=@swagger-ui.version@
+```
+
+Senza questa riga Swagger UI risponde 404.
+
+Un progetto che dichiara un proprio blocco `<resources>` lo sostituisce a quello del BOM: in quel caso i file `application*` non vengono filtrati. Un blocco con la sola `src/main/resources` è il default di Maven e va tolto.
 
 ### Profili
 

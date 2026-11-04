@@ -1,3 +1,24 @@
+2026-11-04  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [BOM]
+	Override di versione
+	- Swagger UI: 5.34.0 -> 5.34.1 (#7). springdoc-openapi 3.2.0 porta la
+	  5.34.0, con DOMPurify 3.4.16 (CVE-2026-116802, CVE-2026-116803,
+	  CVE-2026-116804); la 5.34.1 porta DOMPurify a 3.4.17. Ripristinate la
+	  proprieta' swagger-ui.version e la entry in dependencyManagement, da
+	  togliere quando springdoc porta la 5.34.1.
+
+	* [Build]
+	Aggiunta funzionalità
+	- Filtro delle risorse come in spring-boot-starter-parent (#7): i file
+	  application*.properties/yml/yaml sono filtrati con il delimitatore @
+	  (resource.delimiter), gli altri file di src/main/resources sono copiati
+	  senza filtro. Con springdoc.swagger-ui.version=@swagger-ui.version@ i
+	  progetti usano la Swagger UI del BOM: springdoc 3.2.0 fissa la 5.34.0
+	  e con la sola dipendenza aggiornata Swagger UI risponde 404.
+	- README: riga di Swagger UI tra le versioni gestite, maven-resources-plugin
+	  tra i plugin ereditati e nuova sezione "Filtro delle risorse".
+
 2026-11-02  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]

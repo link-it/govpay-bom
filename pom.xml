@@ -54,6 +54,9 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- Delimitatore dei token Maven nei file application*.properties/yml/yaml filtrati
+             (come spring-boot-starter-parent): @proprieta@, i ${...} restano a Spring -->
+        <resource.delimiter>@</resource.delimiter>
 
         <!-- Spring -->
         <spring-boot.version>4.1.2</spring-boot.version>
@@ -106,6 +109,10 @@
 
         <!-- API Documentation -->
         <springdoc-openapi.version>3.2.0</springdoc-openapi.version>
+        <!-- Override swagger-ui (springdoc 3.2.0 lo tira transitivamente a 5.34.0, con
+             DOMPurify 3.4.16): 5.34.1 porta DOMPurify a 3.4.17 e risolve
+             CVE-2026-116802/116803/116804. Da togliere quando springdoc porta la 5.34.1 -->
+        <swagger-ui.version>5.34.1</swagger-ui.version>
 
         <!-- OpenAPI Generator -->
         <openapi.tool.codegen.version>7.26.0</openapi.tool.codegen.version>
@@ -503,6 +510,12 @@
                 <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
                 <version>${springdoc-openapi.version}</version>
             </dependency>
+            <!-- Override swagger-ui per CVE DOMPurify (vedi swagger-ui.version) -->
+            <dependency>
+                <groupId>org.webjars</groupId>
+                <artifactId>swagger-ui</artifactId>
+                <version>${swagger-ui.version}</version>
+            </dependency>
 
             <!-- OpenAPI Generator -->
             <dependency>
@@ -534,6 +547,27 @@
     </dependencyManagement>
 
     <build>
+        <!-- Come spring-boot-starter-parent: filtrati solo i file di configurazione di Spring, per
+             leggere le versioni del BOM (es. springdoc.swagger-ui.version=@swagger-ui.version@) -->
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/application*.yml</include>
+                    <include>**/application*.yaml</include>
+                    <include>**/application*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <excludes>
+                    <exclude>**/application*.yml</exclude>
+                    <exclude>**/application*.yaml</exclude>
+                    <exclude>**/application*.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -600,6 +634,13 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${maven-resources-plugin.version}</version>
+                    <configuration>
+                        <propertiesEncoding>${project.build.sourceEncoding}</propertiesEncoding>
+                        <delimiters>
+                            <delimiter>${resource.delimiter}</delimiter>
+                        </delimiters>
+                        <useDefaultDelimiters>false</useDefaultDelimiters>
+                    </configuration>
                 </plugin>
 
                 <plugin>
