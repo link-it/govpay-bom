@@ -1,3 +1,12 @@
+2026-11-09  Giuliano Pintori <giuliano.pintori@link.it>
+
+	* [Release] Ramo 3.11.x: versione 2.1.0-SNAPSHOT
+	Gli sviluppi di GovPay 3.10 e 3.11 non sono compatibili e proseguono su
+	rami separati: 3.10.x resta a 2.0.5-SNAPSHOT, 3.11.x passa a
+	2.1.0-SNAPSHOT, cosi' le SNAPSHOT delle due linee non si sovrascrivono.
+	Anche govpay-common.sql.version passa a 2.1.0-SNAPSHOT, la versione di
+	govpay-common sul ramo 3.11.x.
+
 2026-11-08  Giuliano Pintori <giuliano.pintori@link.it>
 
 	* [BOM]
